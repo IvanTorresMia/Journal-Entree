@@ -5,8 +5,6 @@ const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
 
 
-console.log(user.email)
-
   return (
 
     isAuthenticated && (
