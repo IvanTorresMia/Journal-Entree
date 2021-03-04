@@ -1,22 +1,19 @@
 import "./App.css";
-import LoginButton from "./Components/LoginButton";
-import LogOutButton from "./Components/LogOutButton";
-import Profile from "./Components/Profile";
+import React from 'react';
+import Login from './Pages/Login'
 import { useAuth0 } from "@auth0/auth0-react";
 
-function App() {
-  const { isLoading } = useAuth0();
+const  App = () => {
+  const { isLoading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
 
   return (
-    <div>
-      <LoginButton />
-      <LogOutButton />
-      <Profile />
-    </div>
+    !isAuthenticated && (
+      <Login handleLogin={() => loginWithRedirect()}/>
+    )
   );
 }
 
