@@ -1,9 +1,16 @@
 import "./App.css";
-import React from 'react';
-import Login from './Pages/Login'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import Login from "./Pages/Login";
+import Profile from "./Pages/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const  App = () => {
+const App = () => {
   const { isLoading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   if (isLoading) {
@@ -11,10 +18,14 @@ const  App = () => {
   }
 
   return (
-    !isAuthenticated && (
-      <Login handleLogin={() => loginWithRedirect()}/>
-    )
+    <div>
+      {isAuthenticated ? (
+        <Profile handleLogout={() => logout()} />
+      ) : (
+        <Login handleLogin={() => loginWithRedirect()} />
+      )}
+    </div>
   );
-}
+};
 
 export default App;

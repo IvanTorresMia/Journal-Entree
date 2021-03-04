@@ -2,11 +2,11 @@ import React from 'react';
 
 
 
-const Profile = () => {
+const Profile = ({ handleLogout }) => {
 
     return (
 <div>
-<h1>Login</h1>
+<h1>Logout</h1>
 
 
 <button onClick={handleLogout}>LOGOUT</button>
@@ -14,3 +14,5 @@ const Profile = () => {
 </div>
     )
 }
+
+export default Profile;
