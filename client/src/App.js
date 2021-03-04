@@ -17,7 +17,7 @@ const App = () => {
       {isAuthenticated ? (
         <Profile handleLogout={() => logout()} />
       ) : (
-        <Login handleLogin={() => loginWithRedirect()} />
+        <Login />
       )}
     </div>
   );
