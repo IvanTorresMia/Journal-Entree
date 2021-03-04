@@ -1,11 +1,6 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
 import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -29,3 +24,10 @@ const App = () => {
 };
 
 export default App;
+
+// import {
+//   BrowserRouter as Router,
+//   Redirect,
+//   Route,
+//   Switch,
+// } from "react-router-dom";
