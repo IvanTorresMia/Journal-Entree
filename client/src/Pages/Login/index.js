@@ -1,19 +1,18 @@
-import React from 'react';
+import React from "react";
+import './login.css'
+import Nav from "../../Components/LoginComp/Nav";
+import Header from '../../Components/LoginComp/Header'
+import { useAuth0 } from "@auth0/auth0-react";
 
+const Login = () => {
+  const { loginWithRedirect } = useAuth0();
 
-const Login = ({ handleLogin, handleLogout }) => {
-
-
-    return (
-        <div>
-            <h1>Login</h1>
-
-            <button onClick={handleLogin}>LOGIN</button>
-          
-            
-        </div>
-    )
-
-}
+  return (
+    <div>
+      <Nav handleLogin={() => loginWithRedirect()} />
+      <Header />
+    </div>
+  );
+};
 
 export default Login;
