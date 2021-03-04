@@ -1,3 +1,9 @@
+/* ******************* Header ***************** */
+
 .header-wraper {
     text-align: center;
+}
+
+.header-img {
+    width: 24rem;
 }
