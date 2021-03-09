@@ -12,6 +12,10 @@ const Reasons = [
 {
     reason: "Proven to act as a form of therapy",
     img: logo
+},
+{
+    reason: "Privacy is key",
+    img: logo
 }
 ]
 
