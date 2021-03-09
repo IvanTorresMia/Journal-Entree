@@ -1,5 +1,5 @@
 import React from "react";
-import Images from "../../../Utils/loginImages";
+import Images from "../../../Utils/loginImages.js";
 
 const Header = ({ handleLogin }) => {
   return (
