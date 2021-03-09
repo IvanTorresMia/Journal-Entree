@@ -10,7 +10,7 @@ const Login = () => {
   return (
     <div>
       <Nav handleLogin={() => loginWithRedirect()} />
-      <Header />
+      <Header handleLogin={() => loginWithRedirect()} />
     </div>
   );
 };

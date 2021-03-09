@@ -20,7 +20,7 @@ const Header = ({ handleLogin }) => {
               a way for you to Journal your life.
             </p>
 
-            <button className="btn btn1">Join Now</button>
+            <button onClick={handleLogin} className="btn btn1">Join Now</button>
             <button className="btn btn2">Who Built It?</button>
           </div>
         </div>
