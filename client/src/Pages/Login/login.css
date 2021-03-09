@@ -85,12 +85,18 @@ body {
 
 .btn2 {
   background-color: var(--primary-blue);
-  color: var(--primary-white);
+}
+.btn2 a {
+  color: var(--primary-white) !important;
 }
 
 .btn2:hover {
   background-color: var(--primary-white);
-  color: var(--primary-blue);
+  color: var(--primary-blue) !important;
+}
+
+.btn2 a:hover {
+  color: var(--primary-blue) !important;
 }
 
 .btn1:hover {
@@ -116,15 +122,15 @@ body {
 
 /* ******************* Reasons ***************** */
 .reasons-wraper {
-    background-color: var(--primary-white);
-    text-align: center;
-    max-width: 100% !important;
-    overflow-x: hidden;
+  background-color: var(--primary-white);
+  text-align: center;
+  max-width: 100% !important;
+  overflow-x: hidden;
 }
 
 .reasons-wraper h1 {
-    margin-bottom: 2rem;
-    text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 .card-wraper {
@@ -134,9 +140,9 @@ body {
 }
 
 .reasons-container {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
+}
 
 .reason-img {
   width: 8rem;
