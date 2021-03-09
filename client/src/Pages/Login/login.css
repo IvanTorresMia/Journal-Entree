@@ -1,9 +1,87 @@
+/* imports from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Colors */
+:root {
+    --primary-white: #fff;
+    --primary-black: rgb(72,77,92);
+    --primary-pink: rgb(213,185,177);
+    --primary-yellow: rgb(240,177,64);
+    --primary-blue: rgb(69,115,115);
+    --primary-green: rgb(115,144,134);
+    --primary-purple: rgb(188,148,210);
+    --secondary-blue: rgb(164,189,190);
+    --primary-grey: rgb(216,216,214);
+}
+
+/* ******************* Nav ***************** */
+.navbar {
+    background-color: var(--primary-white) !important;
+}
+
+.nav-wraper {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-right: 10rem !important;
+    padding-left: 10rem !important;
+    border-bottom: 0.1rem solid var(--primary-black);
+}
+
+.navbar-brand {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500 !important;
+    font-size: 1rem;
+    background-color: var(--secondary-blue) !important;
+    color: var(--primary-white) !important;
+    padding: 1rem;
+}
+
+.navbar li a {
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+
 /* ******************* Header ***************** */
 
 .header-wraper {
-    text-align: center;
+    background-color: var(--primary-white) !important;
+    text-align: center !important;
+}
+
+.header-wraper h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
 }
 
 .header-img {
     width: 24rem;
+    border: 2rem solid var(--primary-pink);
 }
+
+.header-wraper button {
+    border: 0.1rem solid var(--primary-blue);
+    margin: 0.5rem;
+}
+
+.btn2 {
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+}
+
+.btn2:hover{
+    background-color: var(--primary-white);
+    color: var(--primary-blue);
+}
+
+.btn1:hover{
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+}
+
