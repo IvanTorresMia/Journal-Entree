@@ -2,6 +2,7 @@ import React from "react";
 import Images from "../../../Utils/loginImages.js";
 
 const Header = ({ handleLogin }) => {
+
   return (
     <div className="jumbotron header-wraper">
       <div className="container">
@@ -20,8 +21,12 @@ const Header = ({ handleLogin }) => {
               a way for you to Journal your life.
             </p>
 
-            <button onClick={handleLogin} className="btn btn1">Join Now</button>
-            <button className="btn btn2">Who Built It?</button>
+            <button onClick={handleLogin} className="btn btn1">
+              Join Now
+            </button>
+            <button className="btn btn2">
+              <a href="/aboutUs">Who Built It?</a>
+            </button>
           </div>
         </div>
       </div>
