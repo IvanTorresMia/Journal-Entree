@@ -3,9 +3,9 @@ import React from "react";
 const Nav = ({ handleLogin }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <a className="navbar-brand" href="#">
-         JournalEntree
+      <div className="container nav-wraper">
+        <a className="navbar-brand rounded" href="#">
+            The Journal Entry
         </a>
         <button
           className="navbar-toggler"
