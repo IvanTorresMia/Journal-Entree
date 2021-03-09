@@ -114,9 +114,30 @@ body {
   }
 }
 
-
 /* ******************* Reasons ***************** */
+.reasons-wraper {
+    background-color: var(--primary-white);
+    text-align: center;
+}
+
+.reasons-wraper h1 {
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.card-wraper {
+  text-align: center;
+  margin: 2rem;
+  max-width: 10rem;
+}
+
+.reasons-container {
+    display: flex;
+    justify-content: center;
+  }
 
 .reason-img {
-    width: 6rem;
+  width: 8rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
 }
