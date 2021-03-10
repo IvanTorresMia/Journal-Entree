@@ -14,8 +14,10 @@ router.post("/api/User", (req, res) => {
 });
 
 // Route to get user
-router.get("/api/User", (req, res) => {
-  res.json({ email: req.user.email, id: req.user.id });
+router.get("/api/User/all", (req, res) => {
+ db.User.findAll().then((userDb) => {
+     res.json(userDb)
+ })
 });
 
 // if no api routes are hit then we send the react app.

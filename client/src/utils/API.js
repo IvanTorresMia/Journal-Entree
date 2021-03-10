@@ -6,7 +6,7 @@ const API = {
     return axios.post("/api/User", email);
   },
   getUser: function() {
-    return axios.get("/api/User")
+    return axios.get("/api/User/all")
 },
 };
 
