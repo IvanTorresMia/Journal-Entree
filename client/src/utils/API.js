@@ -8,6 +8,12 @@ const API = {
   getUser: function() {
     return axios.get("/api/User/all")
 },
+  createEntry: function(Entry) {
+    return axios.post("/api/Entry", Entry);
+  },
+  getEntries: function() {
+    return axios.get("/api/Entry");
+  }
 };
 
 export default API;
