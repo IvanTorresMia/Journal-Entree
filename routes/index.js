@@ -2,6 +2,9 @@ const db = require("../models");
 const path = require("path");
 const router = require("express").Router();
 
+
+/* --------------------- User Routes -------------------*/
+
 // Route to Create a user
 router.post("/api/User", (req, res) => {
   db.User.create({
@@ -33,7 +36,16 @@ router.get("/api/authors/:id",(req, res) => {
 });
 
 
+/* --------------------- Journal Entries Routes -------------------*/
+
 // route to post journal entries
+router.post("/api/Entry", (req, res) => {
+    db.JournalEntry.create(req.body).then((dbEntry) => {
+        res.json(dbEntry)
+    })
+})
+
+// route to get journal entries
 
 
 // if no api routes are hit then we send the react app.
