@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-    const JournalEntree = sequelize.define("JournalEntree", {
+    const JournalEntry = sequelize.define("JournalEntry", {
 
         title: {
             type: DataTypes.STRING,
@@ -12,10 +12,19 @@ module.exports = (sequelize, DataTypes) => {
         text: {
             type: DataTypes.STRING,
             allowNull: false,
+            len: [1]
         }
 
     })
     
+    JournalEntry.associate = (models) => {
 
-    return JournalEntree;
+        JournalEntry.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        })
+    }
+
+    return JournalEntry;
 }
