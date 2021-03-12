@@ -5,11 +5,14 @@ const API = {
   createUser: function (email) {
     return axios.post("/api/User", email);
   },
-  getUser: function() {
+  getUsers: function() {
     return axios.get("/api/User/all")
 },
-  createEntry: function(Entry) {
-    return axios.post("/api/Entry", Entry);
+getUser: function(id) {
+  return axios.get("/api/User/One", id)
+},
+  createEntry: function(title, text) {
+    return axios.post("/api/Entry", title, text);
   },
   getEntries: function() {
     return axios.get("/api/Entry");
