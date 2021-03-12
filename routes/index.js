@@ -29,7 +29,7 @@ router.get("/api/User/One",(req, res) => {
         where: {
            id: req.body.id
         },
-        include: [db.JournalEntry]
+        include: [db.JournalEntry, db.Profile]
     }).then((userDb) => {
         res.json(userDb);
     });
@@ -43,7 +43,8 @@ router.post("/api/Entry", (req, res) => {
   console.log(req.body);
     db.JournalEntry.create({
       title: req.body.title,
-      text: req.body.text
+      text: req.body.text,
+      UserId: req.body.id
     }).then((dbEntry) => {
         res.json(dbEntry)
         // console.log(dbEntry)
