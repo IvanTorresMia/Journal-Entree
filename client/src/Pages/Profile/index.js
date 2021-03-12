@@ -44,17 +44,18 @@ const Profile = ({ handleLogout }) => {
 
   const submitEntry = (event) => {
     event.preventDefault();
-    console.log(userId);
 
-    // const title = JSON.stringify(entry.title)
-    // const text = JSON.stringify(entry.text)
+    const title = JSON.stringify(entry.title)
+    const text = JSON.stringify(entry.text)
+    const id = JSON.stringify(userId)
 
-    // console.log(title);
-    // console.log(text);
+    console.log(title);
+    console.log(text);
+    console.log(id)
 
-    // API.createEntry({title: title, text: text}).then(res => {
-    //   console.log(res)
-    // })
+    API.createEntry({title: title, text: text, id: id}).then(res => {
+      console.log(res)
+    });
   };
 
   const handleTitle = (event) => {
