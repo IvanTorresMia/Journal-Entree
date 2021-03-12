@@ -11,8 +11,8 @@ const API = {
 getUser: function(id) {
   return axios.get("/api/User/One", id)
 },
-  createEntry: function(title, text) {
-    return axios.post("/api/Entry", title, text);
+  createEntry: function(title, text, id) {
+    return axios.post("/api/Entry", title, text, id);
   },
   getEntries: function() {
     return axios.get("/api/Entry");
