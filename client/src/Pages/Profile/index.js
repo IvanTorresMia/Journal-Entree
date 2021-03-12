@@ -5,6 +5,11 @@ import API from "../../Utils/API";
 const Profile = ({ handleLogout }) => {
   const { user, isAuthenticated } = useAuth0();
   const [userEmail, setUserEmail] = useState();
+  const [userId, setUserId] = useState([]);
+  const [entry, setEntry] = useState({
+    title: "",
+    text: "",
+  });
 
   useEffect(() => {
     getCreateOrGet();
@@ -12,10 +17,15 @@ const Profile = ({ handleLogout }) => {
 
   // function checks if user exist in data base, if not then it creates one
   const getCreateOrGet = () => {
-    API.getUser().then((res) => {
+    API.getUsers().then((res) => {
       const users = [];
+
       for (let i = 0; i < res.data.length; i++) {
         users.push(res.data[i].email);
+        if (res.data[i].email === JSON.stringify(user.email)) {
+    
+          setUserId(res.data[i].id)
+        }
       }
 
       if (users.includes(JSON.stringify(user.email))) {
@@ -32,6 +42,40 @@ const Profile = ({ handleLogout }) => {
     });
   };
 
+  const submitEntry = (event) => {
+    event.preventDefault();
+    console.log(userId);
+
+    // const title = JSON.stringify(entry.title)
+    // const text = JSON.stringify(entry.text)
+
+    // console.log(title);
+    // console.log(text);
+
+    // API.createEntry({title: title, text: text}).then(res => {
+    //   console.log(res)
+    // })
+  };
+
+  const handleTitle = (event) => {
+    const { value } = event.target;
+    setEntry({ ...entry, title: value });
+    console.log(entry.title);
+  };
+
+  const handleText = (event) => {
+    const { value } = event.target;
+    setEntry({ ...entry, text: value });
+    console.log(entry.text);
+  };
+
+  const getUser = () => {
+    const email = JSON.stringify(user.email);
+    API.getUser({ email: email }).then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     isAuthenticated && (
       <div className="container">
@@ -42,9 +86,15 @@ const Profile = ({ handleLogout }) => {
         <p>{user.email}</p>
         <br />
 
-   
-
         {JSON.stringify(user, null, 6)}
+        <br />
+
+        <button onClick={getUser}>Get User</button>
+
+        <input onChange={handleTitle} placeholder="title" />
+        <input onChange={handleText} placeholder="text" />
+        <button onClick={submitEntry}>Submit Entry</button>
+        <br />
         <br />
         <button onClick={handleLogout}>LOGOUT</button>
       </div>
