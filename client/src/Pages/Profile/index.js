@@ -41,6 +41,9 @@ const Profile = ({ handleLogout }) => {
         <h2>{user.name}</h2>
         <p>{user.email}</p>
         <br />
+
+   
+
         {JSON.stringify(user, null, 6)}
         <br />
         <button onClick={handleLogout}>LOGOUT</button>
