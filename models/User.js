@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.JournalEntry, {
             onDelete: "cascade"
         });
+
+        User.hasOne(models.Profile), {
+            onDelete: "cascade"
+        }
+
+
       };
     return User;
 }
