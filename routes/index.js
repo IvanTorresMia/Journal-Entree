@@ -18,16 +18,16 @@ router.post("/api/User", (req, res) => {
 
 // Route to get user
 router.get("/api/User/all", (req, res) => {
-  db.User.findAll({ include: [db.JournalEntry] }).then((userDb) => {
+  db.User.findAll({ include: [db.JournalEntry, db.Profile] }).then((userDb) => {
     res.json(userDb);
   });
 });
 
-// route to get one author and his entries
-router.get("/api/authors/:id",(req, res) => {
+// route to get one User and his entries
+router.get("/api/User/One",(req, res) => {
     db.User.findOne({
         where: {
-            id: req.params.id
+           id: req.body.id
         },
         include: [db.JournalEntry]
     }).then((userDb) => {
@@ -40,13 +40,22 @@ router.get("/api/authors/:id",(req, res) => {
 
 // route to post journal entries
 router.post("/api/Entry", (req, res) => {
-    db.JournalEntry.create(req.body).then((dbEntry) => {
+  console.log(req.body);
+    db.JournalEntry.create({
+      title: req.body.title,
+      text: req.body.text
+    }).then((dbEntry) => {
         res.json(dbEntry)
+        // console.log(dbEntry)
     })
 })
 
 // route to get journal entries
-
+// router.get("/api/Entry", (req, res) => {
+//   db.JournalEntry.findAll({
+//     where: 
+//   })
+// })
 
 // if no api routes are hit then we send the react app.
 router.use((req, res) => {
