@@ -18,7 +18,7 @@ router.post("/api/User", (req, res) => {
 
 // Route to get user
 router.get("/api/User/all", (req, res) => {
-  db.User.findAll({ include: [db.JournalEntry, db.Profile] }).then((userDb) => {
+  db.User.findAll({ include: [db.JournalEntry] }).then((userDb) => {
     res.json(userDb);
   });
 });
@@ -26,10 +26,10 @@ router.get("/api/User/all", (req, res) => {
 // route to get one User and his entries
 router.get("/api/User/One",(req, res) => {
     db.User.findOne({
-        where: {
-           id: req.body.id
-        },
-        include: [db.JournalEntry, db.Profile]
+  
+           id: req.body.id,
+     
+        include: [db.JournalEntry]
     }).then((userDb) => {
         res.json(userDb);
     });
