@@ -19,12 +19,11 @@ const Profile = ({ handleLogout }) => {
   const getCreateOrGet = () => {
     API.getUsers().then((res) => {
       const users = [];
-
+      console.log(res);
       for (let i = 0; i < res.data.length; i++) {
         users.push(res.data[i].email);
         if (res.data[i].email === JSON.stringify(user.email)) {
-    
-          setUserId(res.data[i].id)
+          setUserId(res.data[i].id);
         }
       }
 
@@ -35,7 +34,7 @@ const Profile = ({ handleLogout }) => {
         if (isAuthenticated) {
           const email = JSON.stringify(user.email);
           API.createUser({ email: email }).then((res) => {
-            console.log(res);
+            // console.log(res);
           });
         }
       }
@@ -45,16 +44,16 @@ const Profile = ({ handleLogout }) => {
   const submitEntry = (event) => {
     event.preventDefault();
 
-    const title = JSON.stringify(entry.title)
-    const text = JSON.stringify(entry.text)
-    const id = JSON.stringify(userId)
+    const title = JSON.stringify(entry.title);
+    const text = JSON.stringify(entry.text);
+    const id = JSON.stringify(userId);
 
     console.log(title);
     console.log(text);
-    console.log(id)
+    console.log(id);
 
-    API.createEntry({title: title, text: text, id: id}).then(res => {
-      console.log(res)
+    API.createEntry({ title: title, text: text, id: id }).then((res) => {
+      console.log(res);
     });
   };
 
@@ -71,8 +70,9 @@ const Profile = ({ handleLogout }) => {
   };
 
   const getUser = () => {
-    const email = JSON.stringify(user.email);
-    API.getUser({ email: email }).then((res) => {
+    const ids = JSON.parse(userId);
+    console.log(ids)
+    API.getUser({ id: ids}).then((res) => {
       console.log(res);
     });
   };
