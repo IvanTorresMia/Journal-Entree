@@ -6,6 +6,7 @@ const Profile = ({ handleLogout }) => {
   const { user, isAuthenticated } = useAuth0();
   const [userEmail, setUserEmail] = useState();
   const [userId, setUserId] = useState([]);
+  const [userName, setUserName] = useState()
   const [entry, setEntry] = useState({
     title: "",
     text: "",
@@ -14,6 +15,10 @@ const Profile = ({ handleLogout }) => {
   useEffect(() => {
     getCreateOrGet();
   }, []);
+
+
+  /* --------------------- Functions for User -------------------*/
+
 
   // function checks if user exist in data base, if not then it creates one
   const getCreateOrGet = () => {
@@ -41,6 +46,15 @@ const Profile = ({ handleLogout }) => {
     });
   };
 
+  const getUser = () => {
+    const id = JSON.parse(userId);
+    console.log(id);
+    API.getUser({ id: id }).then((res) => {
+      console.log(res);
+    });
+  };
+
+  /* --------------------- functions for entries -------------------*/
   const submitEntry = (event) => {
     event.preventDefault();
 
@@ -69,12 +83,19 @@ const Profile = ({ handleLogout }) => {
     console.log(entry.text);
   };
 
-  const getUser = () => {
-    const id = JSON.parse(userId);
-    console.log(id);
-    API.getUser({ id: id }).then((res) => {
-      console.log(res);
-    });
+
+
+  const submitProfile = (event) => {
+    event.preventDefault();
+
+
+  }
+
+
+  const handleUserName = (event) => {
+    const { value } = event.target;
+    setUserName(value);
+    console.log(entry.title);
   };
 
   return (
@@ -95,6 +116,8 @@ const Profile = ({ handleLogout }) => {
         <input onChange={handleTitle} placeholder="title" />
         <input onChange={handleText} placeholder="text" />
         <button onClick={submitEntry}>Submit Entry</button>
+        <input onChange={handleUserName} placeholder="text" />
+        <button onClick={submitProfile}>Submit Profile</button>
         <br />
         <br />
         <button onClick={handleLogout}>LOGOUT</button>
