@@ -70,9 +70,9 @@ const Profile = ({ handleLogout }) => {
   };
 
   const getUser = () => {
-    const ids = JSON.parse(userId);
-    console.log(ids)
-    API.getUser({ id: ids}).then((res) => {
+    const id = JSON.parse(userId);
+    console.log(id);
+    API.getUser({ id: id }).then((res) => {
       console.log(res);
     });
   };
