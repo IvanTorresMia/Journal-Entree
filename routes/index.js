@@ -40,7 +40,7 @@ router.post("/api/Entry", (req, res) => {
   db.JournalEntry.create({
     title: req.body.title,
     text: req.body.text,
-    UserId: req.body.id,
+    CatagoryId: req.body.id,
   }).then((dbEntry) => {
     res.json(dbEntry);
     // console.log(dbEntry)
@@ -56,10 +56,11 @@ router.post("/api/Entry", (req, res) => {
 
 
 /* --------------------- Route to create catagory -------------------*/
-router.post("/api/Entry", (req, res) => {
+router.post("/api/Catagory", (req, res) => {
     db.Catagory.create({
       name: req.body.name,
-      text: req.body.text
+      text: req.body.text,
+      UserId: req.body.id
     }).then((dbCatagory) => {
       res.json(dbCatagory)
     }).catch(err => res.status(422).json(err))
@@ -72,6 +73,7 @@ router.post("/api/Entry", (req, res) => {
 router.post("/api/Profile", (req, res) => {
   db.Profile.create({
     userName: req.body.UserName,
+    UserId: req.body.id
   })
     .then((dbUser) => {
       res.json(dbUser);
