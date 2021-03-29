@@ -12,10 +12,15 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade",
     });
 
-    User.hasOne(models.Profile),
-      {
-        onDelete: "cascade",
-      };
-  };
+
+    
+  }
+
+  User.associate = (models) => {
+    User.hasOne(models.Profile, {
+        onDelete: "cascade"
+      });
+  }
+
   return User;
 };
