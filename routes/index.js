@@ -17,20 +17,27 @@ router.post("/api/User", (req, res) => {
 
 // Route to get user
 router.get("/api/User/all", (req, res) => {
-  db.User.findAll({ include: [db.JournalEntry] }).then((userDb) => {
+  db.User.findAll({}).then((userDb) => {
     res.json(userDb);
   });
 });
 
-// route to get one User and his entries
-router.get("/api/User/One", (req, res) => {
-  db.User.findOne({
-    id: req.body.id,
-    include: [db.JournalEntry],
-  }).then((userDb) => {
-    res.json(userDb);
-  });
-});
+const getUser = (email) => {
+  return db.User.findOne({
+    where: {email: email},
+    include: [db.Profile]
+  }).then(res => {
+    console.log(res);
+    return res;
+  })
+}
+
+router.get("/api/User/:email", (req, res) => {
+  getUser(req.params.email).then(foundUser => {
+    res.send(foundUser);
+  })
+})
+
 
 /* --------------------- Journal Entries Routes -------------------*/
 
@@ -43,7 +50,7 @@ router.post("/api/Entry", (req, res) => {
     CatagoryId: req.body.id,
   }).then((dbEntry) => {
     res.json(dbEntry);
-    // console.log(dbEntry)
+    console.log(dbEntry)
   });
 });
 
@@ -54,34 +61,32 @@ router.post("/api/Entry", (req, res) => {
 //   })
 // })
 
-
 /* --------------------- Route to create catagory -------------------*/
 router.post("/api/Catagory", (req, res) => {
-    db.Catagory.create({
-      name: req.body.name,
-      text: req.body.text,
-      UserId: req.body.id
-    }).then((dbCatagory) => {
-      res.json(dbCatagory)
-    }).catch(err => res.status(422).json(err))
-})
-
+  db.Catagory.create({
+    name: req.body.name,
+    text: req.body.text,
+    UserId: req.body.id,
+  })
+    .then((dbCatagory) => {
+      res.json(dbCatagory);
+    })
+    .catch((err) => res.status(422).json(err));
+});
 
 /* --------------------- Route to create Profile -------------------*/
 
 // Route to Create a user
 router.post("/api/Profile", (req, res) => {
   db.Profile.create({
-    userName: req.body.UserName,
-    UserId: req.body.id
+    UserName: req.body.userName,
+    UserId: req.body.id,
   })
     .then((dbUser) => {
       res.json(dbUser);
     })
     .catch((err) => res.status(422).json(err));
 });
-
-
 
 // if no api routes are hit then we send the react app.
 router.use((req, res) => {
