@@ -2,18 +2,17 @@ import axios from "axios";
 
 // eslint-disable-next-line
 const API = {
+  /* --------------------- api calls for User -------------------*/
   createUser: function (email) {
     return axios.post("/api/User", email);
-  },
-  createUserName: (userName) => {
-    return axios.post("/api/User", userName)
   },
   getUsers: function () {
     return axios.get("/api/User/all");
   },
-  getUser: function (id) {
-    return axios.get("/api/User/One", id);
+  getUser: function (email) {
+    return axios.get("/api/User/" + email);
   },
+  /* --------------------- api calls for entries -------------------*/
   createEntry: function (title, text, id) {
     return axios.post("/api/Entry", title, text, id);
   },
@@ -22,10 +21,12 @@ const API = {
   },
   createCatagory: (name, description, id) => {
     return axios.post("/api/Catagory", name, description, id)
+  },
+  /* --------------------- api calls for profile -------------------*/
+  createProfile: (userName, id) => {
+    return axios.post("/api/Profile", userName, id)
   }
 };
 
 export default API;
 
-// You actually don't fully know how to make this work hahaha
-// but you will bb boy.
