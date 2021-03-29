@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import API from "../../Utils/API";
 
+  /* --------------------- Components -------------------*/
+ import Nav from '../../Components/ProfileComp/NavBar'
+
+  
+
 const Profile = ({ handleLogout }) => {
   const { user, isAuthenticated } = useAuth0();
   const [userEmail, setUserEmail] = useState();
@@ -102,18 +107,32 @@ const Profile = ({ handleLogout }) => {
     console.log(entry.title);
   };
 
+
+
+
+
+
   return (
     isAuthenticated && (
       <div className="container">
+       <Nav />
+
+      </div>
+    )
+  );
+};
+
+export default Profile;
+
+
+
+       {/* <h2>{user.name}</h2> */}
+       
+       
+       
+{/*        
         <h1>Logout</h1>
 
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-        <br />
-
-        {JSON.stringify(user, null, 6)}
-        <br />
 
         <button onClick={getUser}>Get User</button>
 
@@ -125,9 +144,16 @@ const Profile = ({ handleLogout }) => {
         <br />
         <br />
         <button onClick={handleLogout}>LOGOUT</button>
-      </div>
-    )
-  );
-};
 
-export default Profile;
+        <br />
+        <br /> */}
+
+
+{/* things to out disposal */}
+        {/* <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+        <br />
+
+        {JSON.stringify(user, null, 6)}
+        <br /> */}
