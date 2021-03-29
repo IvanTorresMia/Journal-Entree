@@ -21,5 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+
+Catagory.associate = (models) => {
+  Catagory.hasMany(models.JournalEntry, {
+    onDelete: "cascade"
+  })
+}
+
   return Catagory;
 };
