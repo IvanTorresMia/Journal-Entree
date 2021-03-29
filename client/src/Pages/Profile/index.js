@@ -6,7 +6,9 @@ const Profile = ({ handleLogout }) => {
   const { user, isAuthenticated } = useAuth0();
   const [userEmail, setUserEmail] = useState();
   const [userId, setUserId] = useState([]);
-  const [userName, setUserName] = useState()
+  const [profile, setProfile] = useState({
+    userName: "",
+  });
   const [entry, setEntry] = useState({
     title: "",
     text: "",
@@ -16,9 +18,7 @@ const Profile = ({ handleLogout }) => {
     getCreateOrGet();
   }, []);
 
-
   /* --------------------- Functions for User -------------------*/
-
 
   // function checks if user exist in data base, if not then it creates one
   const getCreateOrGet = () => {
@@ -27,29 +27,30 @@ const Profile = ({ handleLogout }) => {
       console.log(res);
       for (let i = 0; i < res.data.length; i++) {
         users.push(res.data[i].email);
-        if (res.data[i].email === JSON.stringify(user.email)) {
+        if (res.data[i].email === user.email) {
           setUserId(res.data[i].id);
         }
       }
 
-      if (users.includes(JSON.stringify(user.email))) {
+      if (users.includes(user.email)) {
         setUserEmail(user.email);
         console.log(user.email + " is already created");
       } else {
         if (isAuthenticated) {
-          const email = JSON.stringify(user.email);
+          const email = user.email;
           API.createUser({ email: email }).then((res) => {
-            // console.log(res);
+            console.log(res);
           });
         }
       }
     });
   };
 
-  const getUser = () => {
-    const id = JSON.parse(userId);
-    console.log(id);
-    API.getUser({ id: id }).then((res) => {
+  const getUser = (event) => {
+    // event.preventDefault();
+    const email = userEmail;
+    console.log(email);
+    API.getUser(email).then((res) => {
       console.log(res);
     });
   };
@@ -83,18 +84,21 @@ const Profile = ({ handleLogout }) => {
     console.log(entry.text);
   };
 
-
+  /* --------------------- functions for Prifile -------------------*/
 
   const submitProfile = (event) => {
     event.preventDefault();
-
-
-  }
-
+    const userName = profile.userName;
+    const id = userId;
+    console.log("this is the user id" + id);
+    API.createProfile({ userName: userName, id: id }).then((res) =>
+      console.log(res)
+    );
+  };
 
   const handleUserName = (event) => {
     const { value } = event.target;
-    setUserName(value);
+    setProfile({ ...profile, userName: value });
     console.log(entry.title);
   };
 
