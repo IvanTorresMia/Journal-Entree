@@ -6,19 +6,15 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  User.associate = function (models) {
-    // Using relational data. User will have many entries, if user is deleted then they all delete.
-    User.hasMany(models.Catagory, {
-      onDelete: "cascade",
-    });
-
-
-    
-  }
 
   User.associate = (models) => {
     User.hasOne(models.Profile, {
         onDelete: "cascade"
+      });
+      User.hasMany(models.Catagory, {
+        foreignKey: {
+          allowNull: false
+        }
       });
   }
 
