@@ -65,7 +65,7 @@ router.post("/api/Entry", (req, res) => {
 router.post("/api/Catagory", (req, res) => {
   db.Catagory.create({
     name: req.body.name,
-    text: req.body.text,
+    description: req.body.description,
     UserId: req.body.id,
   })
     .then((dbCatagory) => {
