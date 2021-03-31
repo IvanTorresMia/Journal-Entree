@@ -7,25 +7,18 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 20],
       },
     },
-    text: {
+    description: {
       type: DataTypes.STRING,
       allowNull: true,
     },
   });
-
-  Catagory.associate = (models) => {
-    Catagory.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
 
 
 Catagory.associate = (models) => {
   Catagory.hasMany(models.JournalEntry, {
     onDelete: "cascade"
   })
+  Catagory.belongsTo(models.User);
 }
 
   return Catagory;
