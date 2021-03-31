@@ -4,8 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import API from "../../../Utils/API";
 import ProfileContext from "../../../Context/ProfileContext";
 import CatagoryCards from "../CatagoryCards";
-import GetProfile from '../GetProfile'
-
+import GetProfile from "../GetProfile";
 
 // Everything is going to happen here for profile
 
@@ -31,17 +30,16 @@ const Wrapper = () => {
 
   return (
     <div className="container">
-        <div className="row">
+      <div className="row">
         <div className="col">
-        <ProfileContext.Provider value={profileData}>
-          <ProfileSection />
-        </ProfileContext.Provider>
-      </div>
-      <div className="col">
-        <CatagoryCards />
-      </div>
+          <ProfileContext.Provider value={profileData}>
+            <ProfileSection />
+          </ProfileContext.Provider>
         </div>
-     
+        <div className="col">
+          <CatagoryCards />
+        </div>
+      </div>
     </div>
   );
 };
