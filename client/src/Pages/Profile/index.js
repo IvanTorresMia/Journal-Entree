@@ -10,98 +10,99 @@ import GetProfile from "../../Components/ProfileComp/GetProfile";
 
 // function to handle log out.
 const Profile = ({ handleLogout }) => {
-  const { user, isAuthenticated } = useAuth0();
-  const [userEmail, setUserEmail] = useState();
-  const [userId, setUserId] = useState([]);
+  const { user } = useAuth0();
   const [profile, setProfile] = useState({
     userName: "",
   });
-
+  const [gotUserName, setGotUserName] = useState(false);
+  const [ids, setId] = useState(null);
   const [entry, setEntry] = useState({
     title: "",
     text: "",
   });
 
   useEffect(() => {
-    getCreateOrGet();
+    CreateOrGet();
   }, []);
 
   /* --------------------- Functions for User -------------------*/
 
   // function checks if user exist in data base, if not then it creates one
-  const getCreateOrGet = () => {
+  const CreateOrGet = () => {
     API.getUsers().then((res) => {
       const users = [];
       console.log(res);
       for (let i = 0; i < res.data.length; i++) {
         users.push(res.data[i].email);
-        if (res.data[i].email === user.email) {
-          setUserId(res.data[i].id);
-        }
       }
-
-      if (users.includes(user.email)) {
-        setUserEmail(user.email);
-        console.log(user.email + " is already created");
-      } else {
-        if (isAuthenticated) {
-          const email = user.email;
-          API.createUser({ email: email }).then((res) => {
-            console.log(res);
+      if (!users.includes(user.email)) {
+        const email = user.email;
+        API.createUser({ email: email }).then((response) => {
+          console.log(response);
+          API.getUsers().then((secondRes) => {
+            for (let j = 0; j < secondRes.data.length; j++) {
+              console.log(secondRes.data[j].email);
+              console.log(user.email);
+              if (secondRes.data[j].email == user.email) {
+                setId(secondRes.data[j].id);
+              }
+            }
           });
-        }
+        });
+      } else {
+       setGotUserName(true)
       }
     });
   };
 
-  // const getUser = (event) => {
-  //   // event.preventDefault();
-  //   const email = userEmail;
-  //   console.log(email);
-  //   API.getUser(email).then((res) => {
+
+const createCatagory = (name, description, id) => {
+
+  API.createCatagory({name: name, description: description, id: id})
+
+}
+
+
+  /* --------------------- functions for entries -------------------*/
+  // const submitEntry = (event) => {
+  //   event.preventDefault();
+
+  //   const title = JSON.stringify(entry.title);
+  //   const text = JSON.stringify(entry.text);
+  //   const id = JSON.stringify(userId);
+
+  //   console.log(title);
+  //   console.log(text);
+  //   console.log(id);
+
+  //   API.createEntry({ title: title, text: text, id: id }).then((res) => {
   //     console.log(res);
   //   });
   // };
 
-  /* --------------------- functions for entries -------------------*/
-  const submitEntry = (event) => {
-    event.preventDefault();
+  // const handleTitle = (event) => {
+  //   const { value } = event.target;
+  //   setEntry({ ...entry, title: value });
+  //   console.log(entry.title);
+  // };
 
-    const title = JSON.stringify(entry.title);
-    const text = JSON.stringify(entry.text);
-    const id = JSON.stringify(userId);
-
-    console.log(title);
-    console.log(text);
-    console.log(id);
-
-    API.createEntry({ title: title, text: text, id: id }).then((res) => {
-      console.log(res);
-    });
-  };
-
-  const handleTitle = (event) => {
-    const { value } = event.target;
-    setEntry({ ...entry, title: value });
-    console.log(entry.title);
-  };
-
-  const handleText = (event) => {
-    const { value } = event.target;
-    setEntry({ ...entry, text: value });
-    console.log(entry.text);
-  };
+  // const handleText = (event) => {
+  //   const { value } = event.target;
+  //   setEntry({ ...entry, text: value });
+  //   console.log(entry.text);
+  // };
 
   /* --------------------- functions for Prifile -------------------*/
 
   const submitProfile = (event) => {
     event.preventDefault();
     const userName = profile.userName;
-    const id = userId;
-    console.log("this is the user id" + id);
-    API.createProfile({ userName: userName, id: id }).then((res) =>
-      console.log(res)
-    );
+    const id = ids;
+    console.log(id);
+    API.createProfile({ userName: userName, id: id }).then((res) => {
+      console.log(res);
+      setGotUserName(true);
+    });
   };
 
   const handleUserName = (event) => {
@@ -111,57 +112,37 @@ const Profile = ({ handleLogout }) => {
   };
 
   return (
-    isAuthenticated && (
-      <div className="container">
-        <Nav />
-        <Wrapper className="wrapper"/>
-        <GetProfile
-          className="profile modal"
-          email={user.email}
-          handlePrfileInput={handleUserName}
-          handleProfileClick={submitProfile}
-        />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <button onClick={handleLogout}>LOGOUT</button>
-      </div>
-    )
+    <div className="container">
+      <Nav />
+      {gotUserName ? (
+        <>
+          <Wrapper />
+          <br />
+          <br />
+          <button onClick={handleLogout}>LOGOUT</button>
+        </>
+      ) : (
+        <>
+          <GetProfile
+            email={user.email}
+            handlePrfileInput={handleUserName}
+            handleProfileClick={submitProfile}
+          />
+          <br />
+          <br />
+          <br />
+          <button onClick={handleLogout}>LOGOUT</button>
+        </>
+      )}
+    </div>
   );
 };
 
 export default Profile;
 
-{
-  /* <h2>{user.name}</h2> */
-}
-
-{
-  /*        
-        <h1>Logout</h1>
 
 
-        <button onClick={getUser}>Get User</button>
 
-        <input onChange={handleTitle} placeholder="title" />
-        <input onChange={handleText} placeholder="text" />
-        <button onClick={submitEntry}>Submit Entry</button>
-        <input onChange={handleUserName} placeholder="text" />
-        <button onClick={submitProfile}>Submit Profile</button>
-        <br />
-        <br />
-        <button onClick={handleLogout}>LOGOUT</button>
-
-        <br />
-        <br /> */
-}
-
-{
-  /* things to out disposal */
-}
 {
   /* <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>
@@ -171,3 +152,5 @@ export default Profile;
         {JSON.stringify(user, null, 6)}
         <br /> */
 }
+
+
