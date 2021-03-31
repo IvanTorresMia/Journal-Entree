@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import "./profile.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import Wrapper from "../../Components/ProfileComp/Wrapper";
 import API from "../../Utils/API";
 
-  /* --------------------- Components -------------------*/
- import Nav from '../../Components/ProfileComp/NavBar'
+/* --------------------- Components -------------------*/
+import Nav from "../../Components/ProfileComp/NavBar";
+import GetProfile from "../../Components/ProfileComp/GetProfile";
 
-  
-
+// function to handle log out.
 const Profile = ({ handleLogout }) => {
   const { user, isAuthenticated } = useAuth0();
   const [userEmail, setUserEmail] = useState();
@@ -14,6 +16,7 @@ const Profile = ({ handleLogout }) => {
   const [profile, setProfile] = useState({
     userName: "",
   });
+
   const [entry, setEntry] = useState({
     title: "",
     text: "",
@@ -51,14 +54,14 @@ const Profile = ({ handleLogout }) => {
     });
   };
 
-  const getUser = (event) => {
-    // event.preventDefault();
-    const email = userEmail;
-    console.log(email);
-    API.getUser(email).then((res) => {
-      console.log(res);
-    });
-  };
+  // const getUser = (event) => {
+  //   // event.preventDefault();
+  //   const email = userEmail;
+  //   console.log(email);
+  //   API.getUser(email).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
 
   /* --------------------- functions for entries -------------------*/
   const submitEntry = (event) => {
@@ -107,16 +110,24 @@ const Profile = ({ handleLogout }) => {
     console.log(entry.title);
   };
 
-
-
-
-
-
   return (
     isAuthenticated && (
       <div className="container">
-       <Nav />
-
+        <Nav />
+        <Wrapper className="wrapper"/>
+        <GetProfile
+          className="profile modal"
+          email={user.email}
+          handlePrfileInput={handleUserName}
+          handleProfileClick={submitProfile}
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <button onClick={handleLogout}>LOGOUT</button>
       </div>
     )
   );
@@ -124,13 +135,12 @@ const Profile = ({ handleLogout }) => {
 
 export default Profile;
 
+{
+  /* <h2>{user.name}</h2> */
+}
 
-
-       {/* <h2>{user.name}</h2> */}
-       
-       
-       
-{/*        
+{
+  /*        
         <h1>Logout</h1>
 
 
@@ -146,14 +156,18 @@ export default Profile;
         <button onClick={handleLogout}>LOGOUT</button>
 
         <br />
-        <br /> */}
+        <br /> */
+}
 
-
-{/* things to out disposal */}
-        {/* <img src={user.picture} alt={user.name} />
+{
+  /* things to out disposal */
+}
+{
+  /* <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>
         <p>{user.email}</p>
         <br />
 
         {JSON.stringify(user, null, 6)}
-        <br /> */}
+        <br /> */
+}
