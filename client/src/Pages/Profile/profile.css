@@ -1,0 +1,44 @@
+/* imports from google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+/* Colors */
+:root {
+  --primary-white: #fff;
+  --primary-black: rgb(72, 77, 92);
+  --primary-pink: rgb(213, 185, 177);
+  --primary-yellow: rgb(240, 177, 64);
+  --primary-blue: rgb(69, 115, 115);
+  --primary-green: rgb(115, 144, 134);
+  --primary-purple: rgb(188, 148, 210);
+  --secondary-blue: rgb(164, 189, 190);
+  --primary-grey: rgb(216, 216, 214);
+}
+
+/*  --------------------- hide or show modal ------------------- */
+
+
+
+/*  --------------------- GetProfile Info Section ------------------- */
+.getProfile-wraper {
+  text-align: center;
+  background-color: var(--primary-white);
+}
+
+.getProfile-wraper button {
+  background-color: var(--primary-blue) !important;
+  margin: 0.5rem;
+}
+
+.getProfile-wraper p {
+  font-size: 1.3rem !important;
+}
+
+.email {
+  color: var(--primary-green);
+}
