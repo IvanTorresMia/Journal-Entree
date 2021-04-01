@@ -25,7 +25,7 @@ router.get("/api/User/all", (req, res) => {
 const getUser = (email) => {
   return db.User.findOne({
     where: {email: email},
-    include: [db.Profile]
+    include: [db.Profile, db.Catagory]
   }).then(res => {
     console.log(res);
     return res;
