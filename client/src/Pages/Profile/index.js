@@ -58,28 +58,14 @@ const Profile = ({ handleLogout }) => {
 
 const createCatagory = (name, description, id) => {
 
-  API.createCatagory({name: name, description: description, id: id})
+  API.createCatagory({name: name, description: description, id: id}).then((res) => {
+    console.log(res)
+  })
 
 }
 
 
   /* --------------------- functions for entries -------------------*/
-  // const submitEntry = (event) => {
-  //   event.preventDefault();
-
-  //   const title = JSON.stringify(entry.title);
-  //   const text = JSON.stringify(entry.text);
-  //   const id = JSON.stringify(userId);
-
-  //   console.log(title);
-  //   console.log(text);
-  //   console.log(id);
-
-  //   API.createEntry({ title: title, text: text, id: id }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
   // const handleTitle = (event) => {
   //   const { value } = event.target;
   //   setEntry({ ...entry, title: value });
@@ -102,6 +88,7 @@ const createCatagory = (name, description, id) => {
     API.createProfile({ userName: userName, id: id }).then((res) => {
       console.log(res);
       setGotUserName(true);
+      createCatagory("Notes", "Main Notes here", id)
     });
   };
 
@@ -118,7 +105,6 @@ const createCatagory = (name, description, id) => {
         <>
           <Wrapper />
           <br />
-          <br />
           <button onClick={handleLogout}>LOGOUT</button>
         </>
       ) : (
@@ -128,8 +114,6 @@ const createCatagory = (name, description, id) => {
             handlePrfileInput={handleUserName}
             handleProfileClick={submitProfile}
           />
-          <br />
-          <br />
           <br />
           <button onClick={handleLogout}>LOGOUT</button>
         </>
