@@ -6,6 +6,7 @@ const ProfileSection = () => {
 
     const context = useContext(ProfileContext)
 
+    console.log(context)
     return (
         <div className = "container">
             <img src={context.img} alt ="profile" />
