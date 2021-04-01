@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Cards from "./cards";
 import CatagoryData from "../../../Utils/tempCatagory";
+import CardContext from '../../../Context/CardContext'
 
-const CatagoryCards = () => {
+
+
+const CatagoryCards = ({handleCatagory}) => {
+
+    const context = useContext(CardContext)
+
+    console.log(context)
   return (
     <div className="container">
       <div className="row">
-        {CatagoryData.map((data, i) => (
-          <Cards title={data.title} description={data.description} key={i} />
+        {context.map((data, i) => (
+          <Cards title={data.name} description={data.description} key={i} />
         ))}
       </div>
+      <button className="btn btn-dark" onClick={handleCatagory}>
+          +
+      </button>
     </div>
   );
 };
