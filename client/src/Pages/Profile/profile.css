@@ -18,14 +18,50 @@ body {
   --primary-purple: rgb(188, 148, 210);
   --secondary-blue: rgb(164, 189, 190);
   --primary-grey: rgb(216, 216, 214);
+  --secondary-grey: rgb(97,97,97);
 }
 
 /*  --------------------- hide or show modal ------------------- */
 
-/* .display-con {
-    display: none;
-} */
+.display-con {
+  display: none;
+}
 
+/* ******************* Nav ***************** */
+.navbar {
+  background-color: var(--primary-white) !important;
+  max-width: 100% !important;
+  overflow-x: hidden;
+}
+
+.nav-wraper {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-right: 10rem !important;
+  padding-left: 10rem !important;
+  border-bottom: 0.1rem solid var(--primary-black);
+}
+
+.navbar-brand {
+  font-family: "Archivo", sans-serif;
+  font-weight: 500 !important;
+  font-size: 1rem;
+  background-color: var(--secondary-blue) !important;
+  color: var(--primary-white) !important;
+  padding: 1rem;
+}
+
+.navbar li a {
+  font-family: "Quicksand", sans-serif;
+}
+
+.profile-body {
+  padding: 1.5rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
 
 /*  --------------------- GetProfile Info Section ------------------- */
 .getProfile-wraper {
@@ -44,4 +80,81 @@ body {
 
 .email {
   color: var(--primary-green);
+}
+
+/*  --------------------- Profile Info Section------------------- */
+.info-wraper {
+  background-color: var(--secondary-grey);
+  color: var(--primary-white);
+  text-align: center;
+  width: 70%;
+  padding: 1rem;
+}
+
+.info-wraper p {
+  font-size: 1.3rem;
+}
+
+/*  --------------------- Modal ------------------- */
+
+.catagory-modal {
+  background-color: var(--primary-blue);
+  box-shadow: 0.8rem 1rem 1rem var(--primary-black);
+  position: absolute;
+  padding: 3rem;
+  padding-top: 4rem;
+  width: 30rem;
+  justify-content: "center";
+  align-items: "center";
+  margin: 0 auto;
+  top: 25%;
+  right: 30%;
+}
+
+.catagory-modal button {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+}
+
+.exit-button {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.catagory-modal h3 {
+  position: absolute;
+  left: 6%;
+  top: 6%;
+}
+
+/*  --------------------- Cards ------------------- */
+.cards {
+  text-align: center;
+  background-color: var(--primary-green);
+  box-shadow: 0.2rem 0.2rem 0.1rem var(--primary-black);
+  padding: 1.2rem;
+  padding-top: 2rem;
+  margin: 1rem;
+  max-width: 8rem;
+  max-height: 11rem;
+  min-height: 11rem;
+  min-width: 8rem;
+}
+
+.delete-catagory {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  position: absolute;
+  top: 5%;
+  right: 8%;
+  width: 1.5rem;
+  height: 1.8rem;
+}
+
+.add-button {
+  margin-left: 16.5rem;
+  margin-top: 2rem;
+  background-color: var(--primary-black);
+  color: var(--primary-white);
 }
