@@ -1,27 +1,26 @@
 import React, { useContext } from "react";
 import Cards from "./cards";
-import CatagoryData from "../../../Utils/tempCatagory";
-import CardContext from '../../../Context/CardContext'
+import CardContext from "../../../Context/CardContext";
+import tempImage from '../../../loginImages/defaultBack.jpg'
+
+const CatagoryCards = ({ handleCatagory }) => {
+  const context = useContext(CardContext);
 
 
-
-const CatagoryCards = ({handleCatagory}) => {
-
-    const context = useContext(CardContext)
-
-    console.log(context)
+  console.log(context);
   return (
     <div className="container">
       <div className="row">
         {context.map((data, i) => (
-          <Cards title={data.name} description={data.description} key={i} />
+          <Cards title={data.name} description={data.description} key={i} tempImage={tempImage}/>
         ))}
       </div>
-      <button className="btn btn-dark" onClick={handleCatagory}>
-          +
+      <button className="btn add-button" onClick={handleCatagory}>
+        Add New Journal
       </button>
     </div>
   );
 };
 
 export default CatagoryCards;
+// 
