@@ -1,19 +1,18 @@
-import React, { useContext } from 'react' 
-import ProfileContext from '../../../Context/ProfileContext'
-
+import React, { useContext } from "react";
+import ProfileContext from "../../../Context/ProfileContext";
 
 const ProfileSection = () => {
+  const context = useContext(ProfileContext);
 
-    const context = useContext(ProfileContext)
-
-    console.log(context)
-    return (
-        <div className = "container">
-            <img src={context.img} alt ="profile" />
-            <h2>{context.name}</h2>
-            <p>temporary tag line</p>
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <div className="info-wraper">
+        <img src={context.img} alt="profile" />
+        <h2>{context.name}</h2>
+        <p>temporary tag line</p>
+      </div>
+    </div>
+  );
+};
 
 export default ProfileSection;
