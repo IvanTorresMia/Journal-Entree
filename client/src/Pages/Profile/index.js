@@ -16,10 +16,6 @@ const Profile = ({ handleLogout }) => {
   });
   const [gotUserName, setGotUserName] = useState(false);
   const [ids, setId] = useState(null);
-  const [entry, setEntry] = useState({
-    title: "",
-    text: "",
-  });
 
   useEffect(() => {
     CreateOrGet();
@@ -50,33 +46,20 @@ const Profile = ({ handleLogout }) => {
           });
         });
       } else {
-       setGotUserName(true)
+        setGotUserName(true);
       }
     });
   };
 
-
-const createCatagory = (name, description, id) => {
-
-  API.createCatagory({name: name, description: description, id: id}).then((res) => {
-    console.log(res)
-  })
-
-}
-
+  const createCatagory = (name, description, id) => {
+    API.createCatagory({ name: name, description: description, id: id }).then(
+      (res) => {
+        console.log(res);
+      }
+    );
+  };
 
   /* --------------------- functions for entries -------------------*/
-  // const handleTitle = (event) => {
-  //   const { value } = event.target;
-  //   setEntry({ ...entry, title: value });
-  //   console.log(entry.title);
-  // };
-
-  // const handleText = (event) => {
-  //   const { value } = event.target;
-  //   setEntry({ ...entry, text: value });
-  //   console.log(entry.text);
-  // };
 
   /* --------------------- functions for Prifile -------------------*/
 
@@ -88,44 +71,39 @@ const createCatagory = (name, description, id) => {
     API.createProfile({ userName: userName, id: id }).then((res) => {
       console.log(res);
       setGotUserName(true);
-      createCatagory("Notes", "Main Notes here", id)
+      createCatagory("Notes", "Main Notes here", id);
     });
   };
 
   const handleUserName = (event) => {
     const { value } = event.target;
     setProfile({ ...profile, userName: value });
-    console.log(entry.title);
+    // console.log(entry.title);
   };
 
   return (
-    <div className="container">
-      <Nav />
-      {gotUserName ? (
-        <>
-          <Wrapper />
-          <br />
-          <button onClick={handleLogout}>LOGOUT</button>
-        </>
-      ) : (
-        <>
-          <GetProfile
-            email={user.email}
-            handlePrfileInput={handleUserName}
-            handleProfileClick={submitProfile}
-          />
-          <br />
-          <button onClick={handleLogout}>LOGOUT</button>
-        </>
-      )}
-    </div>
+    <>
+      <Nav handleLogout={handleLogout} />
+      <div className="container profile-body">
+        {gotUserName ? (
+          <>
+            <Wrapper />
+          </>
+        ) : (
+          <>
+            <GetProfile
+              email={user.email}
+              handlePrfileInput={handleUserName}
+              handleProfileClick={submitProfile}
+            />
+          </>
+        )}
+      </div>
+    </>
   );
 };
 
 export default Profile;
-
-
-
 
 {
   /* <img src={user.picture} alt={user.name} />
@@ -136,5 +114,3 @@ export default Profile;
         {JSON.stringify(user, null, 6)}
         <br /> */
 }
-
-
