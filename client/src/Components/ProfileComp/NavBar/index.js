@@ -3,9 +3,9 @@ import React from "react";
 const Nav = ({ handleLogout }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
+      <div className="container nav-wraper">
         <a className="navbar-brand" href="#">
-          Navbar
+        The Journal Entry
         </a>
         <button
           className="navbar-toggler"
@@ -26,41 +26,9 @@ const Nav = ({ handleLogout }) => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
+              <a onClick={handleLogout} className="nav-link" href="#">
+                Log Out
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a onClick={handleLogout} className="dropdown-item" href="#">
-                 Login
-                </a>
-              </div>
             </li>
           </ul>
         </div>
@@ -70,3 +38,34 @@ const Nav = ({ handleLogout }) => {
 };
 
 export default Nav;
+
+// Drop down incase I need it later
+{
+  /* <li className="nav-item dropdown">
+<a
+  className="nav-link dropdown-toggle"
+  href="#"
+  id="navbarDropdownMenuLink"
+  role="button"
+  data-toggle="dropdown"
+  aria-haspopup="true"
+  aria-expanded="false"
+>
+  Dropdown link
+</a>
+<div
+  className="dropdown-menu"
+  aria-labelledby="navbarDropdownMenuLink"
+>
+  <a className="dropdown-item" href="#">
+    Action
+  </a>
+  <a className="dropdown-item" href="#">
+    Another action
+  </a>
+  <a onClick={handleLogout} className="dropdown-item" href="#">
+   Login
+  </a>
+</div>
+</li> */
+}
