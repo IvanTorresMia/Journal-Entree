@@ -3,8 +3,11 @@ import Cards from "./cards";
 import CardContext from "../../../Context/CardContext";
 import tempImage from '../../../loginImages/defaultBack.jpg'
 
-const CatagoryCards = ({ handleCatagory }) => {
+const CatagoryCards = ({ handleCatagory, handleJournalClick}) => {
   const context = useContext(CardContext);
+
+
+
 
 
   console.log(context);
@@ -12,7 +15,7 @@ const CatagoryCards = ({ handleCatagory }) => {
     <div className="container">
       <div className="row">
         {context.map((data, i) => (
-          <Cards title={data.name} description={data.description} key={i} tempImage={tempImage}/>
+          <Cards title={data.name} description={data.description} key={i} tempImage={tempImage} handleJournalClick={handleJournalClick}/>
         ))}
       </div>
       <button className="btn add-button" onClick={handleCatagory}>

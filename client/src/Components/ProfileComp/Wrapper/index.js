@@ -7,10 +7,9 @@ import CatagoryCards from "../CatagoryCards";
 import CardContext from "../../../Context/CardContext";
 import Modal from "../CatagoryCards/modal";
 
-
 // Everything is going to happen here for profile
 
-const Wrapper = () => {
+const Wrapper = ({ handleJournalClick }) => {
   /*  --------------------- states ------------------- */
   const { user } = useAuth0();
   const [profileData, setProfileData] = useState({
@@ -82,12 +81,7 @@ const Wrapper = () => {
       setRefresh(false);
       setCatagoryInput({ ...cataoryInput, name: "", description: "" });
       console.log(event);
-
     }
-    // } else if (event.key === "Escape") {
-    //   setModal("display-con");
-    //   console.log("hi");
-    // }
   };
 
   const handleNameChange = (event) => {
@@ -111,7 +105,10 @@ const Wrapper = () => {
         </div>
         <div className="col">
           <CardContext.Provider value={catagories}>
-            <CatagoryCards handleCatagory={handleCatagory} />
+            <CatagoryCards
+              handleCatagory={handleCatagory}
+              handleJournalClick={handleJournalClick}
+            />
           </CardContext.Provider>
         </div>
       </div>
