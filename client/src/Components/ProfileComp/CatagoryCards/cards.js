@@ -25,17 +25,12 @@ const useStyles = makeStyles({
   },
 });
 
-const Cards = ({ title, description, tempImage }) => {
+const Cards = ({ title, description, tempImage, handleJournalClick }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        {/* <CardMedia
-            className={classes.media}
-            image={tempImage}
-            title="catagoryImage"
-          /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {title}
@@ -49,9 +44,10 @@ const Cards = ({ title, description, tempImage }) => {
         <Button size="small" color="contained" className={classes.Buttons}>
           Delete
         </Button>
-        <Button size="small" color="primary">
-          Write Entry
-        </Button>
+        <p className="display-con">{title}</p>
+        <button className="btn" size="small" color="primary" onClick={handleJournalClick}>
+          Journal
+        </button>
       </CardActions>
     </Card>
   );
