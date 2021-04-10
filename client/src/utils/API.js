@@ -19,8 +19,13 @@ const API = {
   getEntries: function () {
     return axios.get("/api/Entry");
   },
+  /* --------------------- api calls for catagories aka journals -------------------*/
+
   createCatagory: (name, description, id) => {
     return axios.post("/api/Catagory", name, description, id)
+  },
+  getCatagory: function (name, id) {
+    return axios.get("/api/getCatagory/" + name + "," + id);
   },
   /* --------------------- api calls for profile -------------------*/
   createProfile: (userName, id) => {
