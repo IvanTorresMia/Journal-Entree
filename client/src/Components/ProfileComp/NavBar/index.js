@@ -4,7 +4,7 @@ const Nav = ({ handleLogout }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container nav-wraper">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
         The Journal Entry
         </a>
         <button
@@ -21,7 +21,7 @@ const Nav = ({ handleLogout }) => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/">
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
