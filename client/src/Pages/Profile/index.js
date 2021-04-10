@@ -3,6 +3,13 @@ import "./profile.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Wrapper from "../../Components/ProfileComp/Wrapper";
 import API from "../../Utils/API";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import JournalWrapper from "../../Components/ProfileComp/EntryComponents/Wrapper";
 
 /* --------------------- Components -------------------*/
 import Nav from "../../Components/ProfileComp/NavBar";
@@ -15,7 +22,11 @@ const Profile = ({ handleLogout }) => {
     userName: "",
   });
   const [gotUserName, setGotUserName] = useState(false);
+  const [journaling, setJournaling] = useState(false);
   const [ids, setId] = useState(null);
+  const [currentJournal, setCurrentJournal] = useState({
+    title: "",
+  });
 
   useEffect(() => {
     CreateOrGet();
@@ -61,6 +72,22 @@ const Profile = ({ handleLogout }) => {
 
   /* --------------------- functions for entries -------------------*/
 
+  const handleJournalClick = (event) => {
+    const currentValue = event.target.previousElementSibling.innerHTML;
+    const email = user.email;
+    API.getUser(email).then((res) => {
+      console.log(res.data.id);
+      console.log(currentValue);
+
+      API.getCatagory(currentValue, res.data.id).then((res) => {
+        console.log(res.data.name);
+        setCurrentJournal({ ...currentJournal, title: res.data.name });
+        console.log(currentJournal.title);
+        setJournaling(true)
+      });
+    });
+  };
+
   /* --------------------- functions for Prifile -------------------*/
 
   const submitProfile = (event) => {
@@ -78,32 +105,56 @@ const Profile = ({ handleLogout }) => {
   const handleUserName = (event) => {
     const { value } = event.target;
     setProfile({ ...profile, userName: value });
-    // console.log(entry.title);
   };
 
   return (
     <>
       <Nav handleLogout={handleLogout} />
       <div className="container profile-body">
-        {gotUserName ? (
-          <>
-            <Wrapper />
-          </>
-        ) : (
-          <>
-            <GetProfile
-              email={user.email}
-              handlePrfileInput={handleUserName}
-              handleProfileClick={submitProfile}
-            />
-          </>
-        )}
+        <Route exact path="/">
+          {gotUserName ? (
+            journaling ? (
+              <JournalWrapper title={currentJournal.title} />
+            ) : (
+           
+              <Wrapper handleJournalClick={handleJournalClick} />
+            )
+          ) : (
+            <>
+              <GetProfile
+                email={user.email}
+                handlePrfileInput={handleUserName}
+                handleProfileClick={submitProfile}
+              />
+            </>
+          )}
+        </Route>
       </div>
     </>
   );
 };
 
 export default Profile;
+
+// if got got username is true
+
+// {
+//   gotUserName ? (
+//     journaling ? (
+//       <Wrapper handleJournalClick={handleJournalClick} />
+//     ) : (
+//       <JournalWrapper title={currentJournal.title} />
+//     )
+//   ) : (
+//     <>
+//       <GetProfile
+//         email={user.email}
+//         handlePrfileInput={handleUserName}
+//         handleProfileClick={submitProfile}
+//       />
+//     </>
+//   );
+// }
 
 {
   /* <img src={user.picture} alt={user.name} />
@@ -114,3 +165,23 @@ export default Profile;
         {JSON.stringify(user, null, 6)}
         <br /> */
 }
+
+// {
+//   gotUserName ? (
+//     <>
+//       <Wrapper handleJournalClick={handleJournalClick} />
+//     </>
+//   ) : (
+//     <>
+//       <GetProfile
+//         email={user.email}
+//         handlePrfileInput={handleUserName}
+//         handleProfileClick={submitProfile}
+//       />
+//     </>
+//   );
+// }
+
+// <Route exact path="/JournalWrapper">
+//   <JournalWrapper title={currentJournal.title} />
+// </Route>;
