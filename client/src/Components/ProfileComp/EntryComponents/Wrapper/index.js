@@ -1,11 +1,13 @@
+import { DialogTitle } from '@material-ui/core';
 import React from 'react';
 
 
-const JournalWrapper = () => {
+const JournalWrapper = ({ title }) => {
 
+    console.log(title)
     return (
         <div>
-            hi
+            {title}
         </div>
     )
 }
