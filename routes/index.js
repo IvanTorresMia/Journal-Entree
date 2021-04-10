@@ -74,6 +74,33 @@ router.post("/api/Catagory", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+const getCatagory = (name, id) => {
+  return db.Catagory.findOne({
+    where: {name: name, userId: id}
+  }).then(res => {
+    // console.log(res);
+    return res;
+  })
+}
+
+router.get("/api/getCatagory/:name", (req, res) => {
+  // console.log(req.params.name.split(","))
+  const arr = req.params.name.split(",")
+  const name = arr[0];
+  const id = arr[1]
+
+  console.log(name)
+  console.log(id)
+
+  getCatagory(name, id).then(foundUser => {
+    res.send(foundUser);
+     
+  })
+
+
+
+})
+
 /* --------------------- Route to create Profile -------------------*/
 
 // Route to Create a user
