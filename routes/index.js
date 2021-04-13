@@ -54,12 +54,7 @@ router.post("/api/Entry", (req, res) => {
   });
 });
 
-// route to get journal entries
-// router.get("/api/Entry", (req, res) => {
-//   db.JournalEntry.findAll({
-//     where:
-//   })
-// })
+
 
 /* --------------------- Route to create catagory -------------------*/
 router.post("/api/Catagory", (req, res) => {
