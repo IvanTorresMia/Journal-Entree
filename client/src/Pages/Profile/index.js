@@ -3,12 +3,7 @@ import "./profile.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Wrapper from "../../Components/ProfileComp/Wrapper";
 import API from "../../Utils/API";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Route } from "react-router-dom";
 import JournalWrapper from "../../Components/ProfileComp/EntryComponents/Wrapper";
 
 /* --------------------- Components -------------------*/
@@ -83,7 +78,7 @@ const Profile = ({ handleLogout }) => {
         console.log(res.data.name);
         setCurrentJournal({ ...currentJournal, title: res.data.name });
         console.log(currentJournal.title);
-        setJournaling(true)
+        setJournaling(true);
       });
     });
   };
@@ -116,7 +111,6 @@ const Profile = ({ handleLogout }) => {
             journaling ? (
               <JournalWrapper title={currentJournal.title} />
             ) : (
-           
               <Wrapper handleJournalClick={handleJournalClick} />
             )
           ) : (
@@ -138,24 +132,6 @@ export default Profile;
 
 // if got got username is true
 
-// {
-//   gotUserName ? (
-//     journaling ? (
-//       <Wrapper handleJournalClick={handleJournalClick} />
-//     ) : (
-//       <JournalWrapper title={currentJournal.title} />
-//     )
-//   ) : (
-//     <>
-//       <GetProfile
-//         email={user.email}
-//         handlePrfileInput={handleUserName}
-//         handleProfileClick={submitProfile}
-//       />
-//     </>
-//   );
-// }
-
 {
   /* <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>
@@ -165,23 +141,3 @@ export default Profile;
         {JSON.stringify(user, null, 6)}
         <br /> */
 }
-
-// {
-//   gotUserName ? (
-//     <>
-//       <Wrapper handleJournalClick={handleJournalClick} />
-//     </>
-//   ) : (
-//     <>
-//       <GetProfile
-//         email={user.email}
-//         handlePrfileInput={handleUserName}
-//         handleProfileClick={submitProfile}
-//       />
-//     </>
-//   );
-// }
-
-// <Route exact path="/JournalWrapper">
-//   <JournalWrapper title={currentJournal.title} />
-// </Route>;
