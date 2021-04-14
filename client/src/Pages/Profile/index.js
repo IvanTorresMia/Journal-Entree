@@ -22,10 +22,20 @@ const Profile = ({ handleLogout }) => {
   const [currentJournal, setCurrentJournal] = useState({
     title: "",
   });
+  const [entry, setEntry] = useState({
+    title: "",
+    body: "",
+    id: null,
+  });
+  const [entryList, setEntryList] = useState([]);
 
   useEffect(() => {
     CreateOrGet();
   }, []);
+
+  useEffect(() => {
+  console.log(entryList)
+  }, [journaling]);
 
   /* --------------------- Functions for User -------------------*/
 
@@ -40,11 +50,11 @@ const Profile = ({ handleLogout }) => {
       if (!users.includes(user.email)) {
         const email = user.email;
         API.createUser({ email: email }).then((response) => {
-          console.log(response);
+          // console.log(response);
           API.getUsers().then((secondRes) => {
             for (let j = 0; j < secondRes.data.length; j++) {
-              console.log(secondRes.data[j].email);
-              console.log(user.email);
+              // console.log(secondRes.data[j].email);
+              // console.log(user.email);
               if (secondRes.data[j].email == user.email) {
                 setId(secondRes.data[j].id);
               }
@@ -71,15 +81,46 @@ const Profile = ({ handleLogout }) => {
     const currentValue = event.target.previousElementSibling.innerHTML;
     const email = user.email;
     API.getUser(email).then((res) => {
-      console.log(res.data.id);
-      console.log(currentValue);
+      // console.log(res.data.id);
+      // console.log(currentValue);
 
       API.getCatagory(currentValue, res.data.id).then((res) => {
-        console.log(res.data.name);
+        // console.log(res.data);
         setCurrentJournal({ ...currentJournal, title: res.data.name });
-        console.log(currentJournal.title);
+        // console.log(currentJournal.title);
         setJournaling(true);
+        setEntry({ ...entry, id: res.data.id });
+        getAllCatagories(res.data.id);
       });
+    });
+  };
+
+  const handleTileChange = (event) => {
+    const { value } = event.target;
+    setEntry({ ...entry, title: value });
+  };
+
+  const handleBodyChange = (event) => {
+    const { value } = event.target;
+
+    setEntry({ ...entry, body: value });
+  };
+
+  const handleSaveClick = () => {
+    API.createEntry({
+      title: entry.title,
+      text: entry.body,
+      id: entry.id,
+    }).then((res) => {
+      console.log(res);
+      console.log(entryList)
+    });
+  };
+
+  const getAllCatagories = (id) => {
+    API.getAllEntries(id).then((res) => {
+      console.log(res.data);
+      setEntryList(res.data);
     });
   };
 
@@ -89,9 +130,9 @@ const Profile = ({ handleLogout }) => {
     event.preventDefault();
     const userName = profile.userName;
     const id = ids;
-    console.log(id);
+    // console.log(id);
     API.createProfile({ userName: userName, id: id }).then((res) => {
-      console.log(res);
+      // console.log(res);
       setGotUserName(true);
       createCatagory("Notes", "Main Notes here", id);
     });
@@ -109,7 +150,13 @@ const Profile = ({ handleLogout }) => {
         <Route exact path="/">
           {gotUserName ? (
             journaling ? (
-              <JournalWrapper title={currentJournal.title} />
+              <JournalWrapper
+                title={currentJournal.title}
+                handleTileChange={handleTileChange}
+                handleBodyChange={handleBodyChange}
+                handleSaveClick={handleSaveClick}
+                JournalEntries={entryList}
+              />
             ) : (
               <Wrapper handleJournalClick={handleJournalClick} />
             )
