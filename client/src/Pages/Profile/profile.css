@@ -84,15 +84,26 @@ body {
 
 /*  --------------------- Profile Info Section------------------- */
 .info-wraper {
-  background-color: var(--secondary-grey);
-  color: var(--primary-white);
   text-align: center;
   width: 70%;
   padding: 1rem;
+  padding-bottom: 2rem;
 }
 
 .info-wraper p {
   font-size: 1.3rem;
+  border: 0.3rem solid var(--primary-black);
+  border-radius: 20%;
+}
+
+.info-wraper h2 {
+  padding-top: 1rem;
+  text-transform: uppercase;
+}
+
+.info-wraper img {
+  border-radius: 50% !important;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem grey;
 }
 
 /*  --------------------- Modal ------------------- */
@@ -129,27 +140,16 @@ body {
 }
 
 /*  --------------------- Cards ------------------- */
-.cards {
-  text-align: center;
-  background-color: var(--primary-green);
-  box-shadow: 0.2rem 0.2rem 0.1rem var(--primary-black);
-  padding: 1.2rem;
+.cards-container {
   padding-top: 2rem;
-  margin: 1rem;
-  max-width: 8rem;
-  max-height: 11rem;
-  min-height: 11rem;
-  min-width: 8rem;
 }
 
-.delete-catagory {
-  background-color: var(--primary-black);
+
+.card {
+  margin: 0.8rem;
+  background-color: var(--secondary-blue);
   color: var(--primary-white);
-  position: absolute;
-  top: 5%;
-  right: 8%;
-  width: 1.5rem;
-  height: 1.8rem;
+  box-shadow: 0.10rem 0.10rem 0.10rem 0.10rem var(--secondary-grey);
 }
 
 .add-button {
@@ -159,7 +159,23 @@ body {
   color: var(--primary-white);
 }
 
+.card a {
+  background-color: var(--primary-blue);
+  margin: 0.1rem;
+  color: var(--primary-white);
+  padding: 0.5rem;
+}
+
+.card a:hover {
+padding: 0.6rem;
+}
+
 /*  --------------------- Journal Entree Section ------------------- */
+.entry-form {
+  border: 0.1rem solid var(--primary-black);
+  padding: 2rem;
+}
+
 .form {
   color: var(--primary-grey);
   font-size: 1.5rem;
