@@ -8,8 +8,7 @@ const JournalWrapper = ({
   handleTileChange,
   handleBodyChange,
 }) => {
-  console.log(title);
-console.log(JournalEntries)
+
   return (
     <div className="container journal-con">
       <div className="row">
