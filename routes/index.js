@@ -24,20 +24,19 @@ router.get("/api/User/all", (req, res) => {
 
 const getUser = (email) => {
   return db.User.findOne({
-    where: {email: email},
-    include: [db.Profile, db.Catagory]
-  }).then(res => {
+    where: { email: email },
+    include: [db.Profile, db.Catagory],
+  }).then((res) => {
     console.log(res);
     return res;
-  })
-}
+  });
+};
 
 router.get("/api/User/:email", (req, res) => {
-  getUser(req.params.email).then(foundUser => {
+  getUser(req.params.email).then((foundUser) => {
     res.send(foundUser);
-  })
-})
-
+  });
+});
 
 /* --------------------- Journal Entries Routes -------------------*/
 
@@ -50,11 +49,9 @@ router.post("/api/Entry", (req, res) => {
     CatagoryId: req.body.id,
   }).then((dbEntry) => {
     res.json(dbEntry);
-    console.log(dbEntry)
+    console.log(dbEntry);
   });
 });
-
-
 
 /* --------------------- Route to create catagory -------------------*/
 router.post("/api/Catagory", (req, res) => {
@@ -71,30 +68,47 @@ router.post("/api/Catagory", (req, res) => {
 
 const getCatagory = (name, id) => {
   return db.Catagory.findOne({
-    where: {name: name, userId: id}
-  }).then(res => {
+    where: { name: name, userId: id },
+  }).then((res) => {
     // console.log(res);
     return res;
-  })
-}
+  });
+};
 
 router.get("/api/getCatagory/:name", (req, res) => {
   // console.log(req.params.name.split(","))
-  const arr = req.params.name.split(",")
+  const arr = req.params.name.split(",");
   const name = arr[0];
-  const id = arr[1]
+  const id = arr[1];
 
-  console.log(name)
-  console.log(id)
+  console.log(name);
+  console.log(id);
 
-  getCatagory(name, id).then(foundUser => {
+  getCatagory(name, id).then((foundUser) => {
     res.send(foundUser);
-     
-  })
+  });
+});
+
+const getAllEntries = (id) => {
+  return db.JournalEntry.findAll({
+    where: { CatagoryId: id },
+  }).then((res) => {
+    // console.log(res);
+    return res;
+  });
+};
+
+router.get("/api/getAllEntries/:id", (req, res) => {
+
+
+  getAllEntries(req.params.id).then((foundUser) => {
+    res.send(foundUser);
+  });
+});
 
 
 
-})
+
 
 /* --------------------- Route to create Profile -------------------*/
 
