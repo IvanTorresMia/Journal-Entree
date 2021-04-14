@@ -12,7 +12,7 @@ const CatagoryCards = ({ handleCatagory, handleJournalClick}) => {
 
   console.log(context);
   return (
-    <div className="container">
+    <div className="container cards-container">
       <div className="row">
         {context.map((data, i) => (
           <Cards title={data.name} description={data.description} key={i} tempImage={tempImage} handleJournalClick={handleJournalClick}/>
