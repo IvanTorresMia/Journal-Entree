@@ -6,7 +6,7 @@ const ProfileSection = () => {
 
   return (
     <div className="container">
-      <div className="info-wraper">
+      <div className="info-wraper rounded">
         <img src={context.img} alt="profile" />
         <h2>{context.name}</h2>
         <p>temporary tag line</p>
