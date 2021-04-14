@@ -19,7 +19,7 @@ const CatagoryCards = ({ handleCatagory, handleJournalClick}) => {
         ))}
       </div>
       <button className="btn add-button" onClick={handleCatagory}>
-        Add New Journal
+        New Journal
       </button>
     </div>
   );

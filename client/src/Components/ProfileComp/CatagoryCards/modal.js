@@ -11,7 +11,7 @@ const Modal = ({
   return (
     <div className={showOrHide} onKeyPress={handleKeyPress}>
        
-      <div className="container catagory-modal">
+      <div className="container catagory-modal rounded">
       <h3>New Journal</h3>
         <button className="btn exit-button" onClick={closeModal}>x</button>
        
