@@ -16,8 +16,8 @@ const API = {
   createEntry: function (title, text, id) {
     return axios.post("/api/Entry", title, text, id);
   },
-  getEntries: function () {
-    return axios.get("/api/Entry");
+  getAllEntries: function (id) {
+    return axios.get("/api/getAllEntries/" + id);
   },
   /* --------------------- api calls for catagories aka journals -------------------*/
 
