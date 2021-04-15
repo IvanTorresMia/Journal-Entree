@@ -1,6 +1,5 @@
 # Journal-Entree
 
-# Portfolio
 
 ## Table of Contents
 
