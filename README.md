@@ -33,7 +33,7 @@ Welcome to your very own Journal app! I am building a way for people to journal 
 
 ## Gif
 ## This is an early developement version of the project. I will update the gif when the MVP is finished.
-![Gif](./Journal-proto.gif)
+![Gif](./journal-proto.gif)
 
 ## Code
 
