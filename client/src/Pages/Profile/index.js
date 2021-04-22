@@ -28,6 +28,7 @@ const Profile = ({ handleLogout }) => {
     id: null,
   });
   const [entryList, setEntryList] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     CreateOrGet();
@@ -50,11 +51,9 @@ const Profile = ({ handleLogout }) => {
       if (!users.includes(user.email)) {
         const email = user.email;
         API.createUser({ email: email }).then((response) => {
-          // console.log(response);
+
           API.getUsers().then((secondRes) => {
             for (let j = 0; j < secondRes.data.length; j++) {
-              // console.log(secondRes.data[j].email);
-              // console.log(user.email);
               if (secondRes.data[j].email == user.email) {
                 setId(secondRes.data[j].id);
               }
@@ -81,13 +80,9 @@ const Profile = ({ handleLogout }) => {
     const currentValue = event.target.previousElementSibling.innerHTML;
     const email = user.email;
     API.getUser(email).then((res) => {
-      // console.log(res.data.id);
-      // console.log(currentValue);
 
       API.getCatagory(currentValue, res.data.id).then((res) => {
-        // console.log(res.data);
         setCurrentJournal({ ...currentJournal, title: res.data.name });
-        // console.log(currentJournal.title);
         setJournaling(true);
         setEntry({ ...entry, id: res.data.id });
         getAllCatagories(res.data.id);
@@ -124,11 +119,7 @@ const Profile = ({ handleLogout }) => {
     });
   };
 
-  const deleteCatagory = (id) => {
-    API.deleteCatagory(1).then((res) => {
-      console.log(res)
-    })
-  };
+
 
   /* --------------------- functions for Prifile -------------------*/
 
@@ -136,9 +127,7 @@ const Profile = ({ handleLogout }) => {
     event.preventDefault();
     const userName = profile.userName;
     const id = ids;
-    // console.log(id);
     API.createProfile({ userName: userName, id: id }).then((res) => {
-      // console.log(res);
       setGotUserName(true);
       createCatagory("Notes", "Main Notes here", id);
     });
@@ -155,21 +144,19 @@ const Profile = ({ handleLogout }) => {
       <div className="container profile-body">
         <Route exact path="/">
           {gotUserName ? (
-            journaling ? (
-              <JournalWrapper
-                title={currentJournal.title}
-                handleTileChange={handleTileChange}
-                handleBodyChange={handleBodyChange}
-                handleSaveClick={handleSaveClick}
-                JournalEntries={entryList}
-              />
-            ) : (
+             <>
               <Wrapper
                 handleJournalClick={handleJournalClick}
-                handleDeleteJournal={deleteCatagory}
               />
-            )
-          ) : (
+              <JournalWrapper
+              title={currentJournal.title}
+              handleTileChange={handleTileChange}
+              handleBodyChange={handleBodyChange}
+              handleSaveClick={handleSaveClick}
+              JournalEntries={entryList}
+            />
+            </>
+            ) : (
             <>
               <GetProfile
                 email={user.email}
@@ -197,3 +184,34 @@ export default Profile;
         {JSON.stringify(user, null, 6)}
         <br /> */
 }
+
+{/* <>
+<Nav handleLogout={handleLogout} />
+<div className="container profile-body">
+  <Route exact path="/">
+    {gotUserName ? (
+      journaling ? (
+        <JournalWrapper
+          title={currentJournal.title}
+          handleTileChange={handleTileChange}
+          handleBodyChange={handleBodyChange}
+          handleSaveClick={handleSaveClick}
+          JournalEntries={entryList}
+        />
+      ) : (
+        <Wrapper
+          handleJournalClick={handleJournalClick}
+        />
+      )
+    ) : (
+      <>
+        <GetProfile
+          email={user.email}
+          handlePrfileInput={handleUserName}
+          handleProfileClick={submitProfile}
+        />
+      </>
+    )}
+  </Route>
+</div>
+</> */}
