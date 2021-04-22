@@ -9,7 +9,7 @@ import Modal from "../CatagoryCards/modal";
 
 // Everything is going to happen here for profile
 
-const Wrapper = ({ handleJournalClick, handleDeleteJournal }) => {
+const Wrapper = ({ handleJournalClick }) => {
   /*  --------------------- states ------------------- */
   const { user } = useAuth0();
   const [profileData, setProfileData] = useState({
@@ -46,6 +46,31 @@ const Wrapper = ({ handleJournalClick, handleDeleteJournal }) => {
   };
 
   /*  --------------------- Functions for Catagories ------------------- */
+
+
+  const deleteCatagory = (id) => {
+    API.deleteCatagory(id).then((res) => {
+      console.log(res)
+    })
+  };
+
+  const handleDeleteJournal = (event) => {
+
+    const currentValue = event.target.previousElementSibling.previousElementSibling.innerHTML
+    const email = user.email;
+    API.getUser(email).then((res) => {
+      API.getCatagory(currentValue, res.data.id).then((res) => {
+        // getAllCatagories(res.data.id);
+        console.log(res)
+        deleteCatagory(res.data.id)
+        setRefresh(true)
+      });
+    });
+    
+
+  }
+
+
   const handleCatagory = () => {
     setModal("");
   };
@@ -96,7 +121,7 @@ const Wrapper = ({ handleJournalClick, handleDeleteJournal }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container mb-4">
       <div className="row">
         <div className="col">
           <ProfileContext.Provider value={profileData}>
