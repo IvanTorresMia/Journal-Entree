@@ -34,7 +34,7 @@ const Profile = ({ handleLogout }) => {
   }, []);
 
   useEffect(() => {
-  console.log(entryList)
+    console.log(entryList);
   }, [journaling]);
 
   /* --------------------- Functions for User -------------------*/
@@ -113,7 +113,7 @@ const Profile = ({ handleLogout }) => {
       id: entry.id,
     }).then((res) => {
       console.log(res);
-      console.log(entryList)
+      console.log(entryList);
     });
   };
 
@@ -122,6 +122,12 @@ const Profile = ({ handleLogout }) => {
       console.log(res.data);
       setEntryList(res.data);
     });
+  };
+
+  const deleteCatagory = (id) => {
+    API.deleteCatagory(1).then((res) => {
+      console.log(res)
+    })
   };
 
   /* --------------------- functions for Prifile -------------------*/
@@ -158,7 +164,10 @@ const Profile = ({ handleLogout }) => {
                 JournalEntries={entryList}
               />
             ) : (
-              <Wrapper handleJournalClick={handleJournalClick} />
+              <Wrapper
+                handleJournalClick={handleJournalClick}
+                handleDeleteJournal={deleteCatagory}
+              />
             )
           ) : (
             <>
