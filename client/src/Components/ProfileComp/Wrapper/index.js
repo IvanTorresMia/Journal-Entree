@@ -9,7 +9,7 @@ import Modal from "../CatagoryCards/modal";
 
 // Everything is going to happen here for profile
 
-const Wrapper = ({ handleJournalClick }) => {
+const Wrapper = ({ handleJournalClick, handleDeleteJournal }) => {
   /*  --------------------- states ------------------- */
   const { user } = useAuth0();
   const [profileData, setProfileData] = useState({
@@ -108,6 +108,7 @@ const Wrapper = ({ handleJournalClick }) => {
             <CatagoryCards
               handleCatagory={handleCatagory}
               handleJournalClick={handleJournalClick}
+              handleDeleteJournal={handleDeleteJournal}
             />
           </CardContext.Provider>
         </div>
