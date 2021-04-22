@@ -27,6 +27,9 @@ const API = {
   getCatagory: function (name, id) {
     return axios.get("/api/getCatagory/" + name + "," + id);
   },
+  deleteCatagory: (id) => {
+    return axios.delete("/api/deleteCatagory/" + id);
+  },
   /* --------------------- api calls for profile -------------------*/
   createProfile: (userName, id) => {
     return axios.post("/api/Profile", userName, id)
