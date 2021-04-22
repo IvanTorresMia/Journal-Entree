@@ -98,6 +98,26 @@ const getAllEntries = (id) => {
   });
 };
 
+router.delete("/api/deleteCatagory/:id", (req, res) => {
+  const id = JSON.parse(req.params.id);
+  deleteCatagory(id).then((deletedUser) => {
+    res.json(deletedUser)
+  })
+})
+
+const deleteCatagory = (id) => {
+  return db.Catagory.destroy(
+    {
+      where: {id: id}
+    }
+  ).then((res) => {
+    return res;
+  })
+}
+
+// router.delete("/api/todos/:id")
+
+
 router.get("/api/getAllEntries/:id", (req, res) => {
 
 
