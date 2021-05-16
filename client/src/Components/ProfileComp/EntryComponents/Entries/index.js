@@ -4,7 +4,7 @@ const Entries = ({ JournalEntries }) => {
   return (
     <div>
       <div className="row">
-        <p> {JournalEntries}</p>
+        <a className="btn entries"> {JournalEntries}</a>
       </div>
     </div>
   );
