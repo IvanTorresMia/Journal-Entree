@@ -31,8 +31,8 @@ const API = {
     return axios.delete("/api/deleteCatagory/" + id);
   },
   /* --------------------- api calls for profile -------------------*/
-  createProfile: (userName, id) => {
-    return axios.post("/api/Profile", userName, id)
+  createProfile: (userName, tagLine, id) => {
+    return axios.post("/api/Profile", userName, tagLine, id)
   }
 };
 
