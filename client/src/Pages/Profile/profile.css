@@ -63,6 +63,10 @@ body {
   top: 0;
 }
 
+.profile {
+  margin-bottom: 5rem;
+}
+
 /*  --------------------- GetProfile Info Section ------------------- */
 .getProfile-wraper {
   text-align: center;
@@ -118,7 +122,7 @@ body {
   justify-content: "center";
   align-items: "center";
   margin: 0 auto;
-  top: 25%;
+  top: 5%;
   right: 30%;
 }
 
@@ -171,6 +175,11 @@ padding: 0.6rem;
 }
 
 /*  --------------------- Journal Entree Section ------------------- */
+.journal-con {
+  position: relative;
+}
+
+
 .entry-form {
   border: 0.1rem solid var(--primary-black);
   padding: 2rem;
@@ -205,7 +214,7 @@ padding: 0.6rem;
 .form input:focus + .label-title .content-title,
 .form input:valid + .label-title .content-title {
   display: none;
-}
+} 
 
 .form-entry {
   color: var(--primary-grey);
@@ -250,4 +259,12 @@ padding: 0.6rem;
   position: absolute;
   right: 10%;
   top: 92%;
+}
+
+
+/* entries */
+
+.entries {
+  border: 0.2rem solid var(--secondary-grey)
+  
 }
