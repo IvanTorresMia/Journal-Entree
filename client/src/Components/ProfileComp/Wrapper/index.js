@@ -15,6 +15,7 @@ const Wrapper = ({ handleJournalClick }) => {
   const [profileData, setProfileData] = useState({
     img: user.picture,
     name: "",
+    tagLine: "",
   });
   const [catagories, setCatagories] = useState([]);
   const [modal, setModal] = useState("display-con");
@@ -39,7 +40,7 @@ const Wrapper = ({ handleJournalClick }) => {
     console.log(email);
     API.getUser(email).then((res) => {
       console.log(res.data.id);
-      setProfileData({ ...profileData, name: res.data.Profile.UserName });
+      setProfileData({ ...profileData, name: res.data.Profile.UserName, tagLine: res.data.Profile.tagline });
       setCatagories(res.data.Catagories);
       setUserId(res.data.id);
     });
@@ -47,29 +48,25 @@ const Wrapper = ({ handleJournalClick }) => {
 
   /*  --------------------- Functions for Catagories ------------------- */
 
-
   const deleteCatagory = (id) => {
     API.deleteCatagory(id).then((res) => {
-      console.log(res)
-    })
+      console.log(res);
+    });
   };
 
   const handleDeleteJournal = (event) => {
-
-    const currentValue = event.target.previousElementSibling.previousElementSibling.innerHTML
+    const currentValue =
+      event.target.previousElementSibling.previousElementSibling.innerHTML;
     const email = user.email;
     API.getUser(email).then((res) => {
       API.getCatagory(currentValue, res.data.id).then((res) => {
         // getAllCatagories(res.data.id);
-        console.log(res)
-        deleteCatagory(res.data.id)
-        setRefresh(true)
+        console.log(res);
+        deleteCatagory(res.data.id);
+        setRefresh(true);
       });
     });
-    
-
-  }
-
+  };
 
   const handleCatagory = () => {
     setModal("");
@@ -121,7 +118,7 @@ const Wrapper = ({ handleJournalClick }) => {
   };
 
   return (
-    <div className="container mb-4">
+    <div className="container profile">
       <div className="row">
         <div className="col">
           <ProfileContext.Provider value={profileData}>
