@@ -137,6 +137,7 @@ router.post("/api/Profile", (req, res) => {
   db.Profile.create({
     UserName: req.body.userName,
     UserId: req.body.id,
+    tagline: req.body.tagLine
   })
     .then((dbUser) => {
       res.json(dbUser);
