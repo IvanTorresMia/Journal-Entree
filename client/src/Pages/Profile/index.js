@@ -144,6 +144,12 @@ const Profile = ({ handleLogout }) => {
               if (res.data[i].title == entry.title) {
                 //we update
                 console.log("make an update call");
+                let entryId = res.data[i].id;
+                API.updateEntry(entryId, entry.title, entry.body).then(
+                  (res) => {
+                    console.log(res);
+                  }
+                );
 
                 return;
               } else {
