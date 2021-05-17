@@ -53,6 +53,26 @@ router.post("/api/Entry", (req, res) => {
   });
 });
 
+router.put("/api/updateEntry/:entry", (req, res) => {
+  const arr = req.params.entry.split(",");
+  const id = arr[0];
+  const title = arr[1];
+  const text = arr[2];
+
+  updateEntries(id, title, text).then((response) => {
+    res.json(response);
+  });
+});
+
+const updateEntries = (id, title, text) => {
+  return db.JournalEntry.update(
+    { title: title, text: text },
+    { where: { id: id } }
+  ).then((res) => {
+    return res;
+  });
+};
+
 /* --------------------- Route to create catagory -------------------*/
 router.post("/api/Catagory", (req, res) => {
   db.Catagory.create({
@@ -101,34 +121,25 @@ const getAllEntries = (id) => {
 router.delete("/api/deleteCatagory/:id", (req, res) => {
   const id = JSON.parse(req.params.id);
   deleteCatagory(id).then((deletedUser) => {
-    res.json(deletedUser)
-  })
-})
+    res.json(deletedUser);
+  });
+});
 
 const deleteCatagory = (id) => {
-  return db.Catagory.destroy(
-    {
-      where: {id: id}
-    }
-  ).then((res) => {
+  return db.Catagory.destroy({
+    where: { id: id },
+  }).then((res) => {
     return res;
-  })
-}
+  });
+};
 
 // router.delete("/api/todos/:id")
 
-
 router.get("/api/getAllEntries/:id", (req, res) => {
-
-
   getAllEntries(req.params.id).then((foundUser) => {
     res.send(foundUser);
   });
 });
-
-
-
-
 
 /* --------------------- Route to create Profile -------------------*/
 
@@ -137,7 +148,7 @@ router.post("/api/Profile", (req, res) => {
   db.Profile.create({
     UserName: req.body.userName,
     UserId: req.body.id,
-    tagline: req.body.tagLine
+    tagline: req.body.tagLine,
   })
     .then((dbUser) => {
       res.json(dbUser);
