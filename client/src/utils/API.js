@@ -19,6 +19,9 @@ const API = {
   getAllEntries: function (id) {
     return axios.get("/api/getAllEntries/" + id);
   },
+  updateEntry: function (id, title, text) {
+    return axios.put("/api/updateEntry/" + id + "," + title + "," + text);
+  },
   /* --------------------- api calls for catagories aka journals -------------------*/
 
   createCatagory: (name, description, id) => {
