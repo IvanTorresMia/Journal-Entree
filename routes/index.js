@@ -59,8 +59,10 @@ router.put("/api/updateEntry/:entry", (req, res) => {
   const title = arr[1];
   const text = arr[2];
 
+  console.log(text)
+
   updateEntries(id, title, text).then((response) => {
-    res.json(response);
+    res.json(response.dataValues);
   });
 });
 
