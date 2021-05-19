@@ -11,14 +11,8 @@ body {
 :root {
   --primary-white: #fff;
   --primary-black: rgb(72, 77, 92);
-  --primary-pink: rgb(213, 185, 177);
-  --primary-yellow: rgb(240, 177, 64);
-  --primary-blue: rgb(69, 115, 115);
-  --primary-green: rgb(115, 144, 134);
-  --primary-purple: rgb(188, 148, 210);
-  --secondary-blue: rgb(164, 189, 190);
-  --primary-grey: rgb(216, 216, 214);
-  --secondary-grey: rgb(97, 97, 97);
+  --secondary-purple: rgb(200, 185, 255);
+  --primary-purple: rgb(85, 81, 255);
 }
 
 /*  --------------------- hide or show modal ------------------- */
@@ -46,7 +40,7 @@ body {
   font-family: "Archivo", sans-serif;
   font-weight: 500 !important;
   font-size: 1rem;
-  background-color: var(--secondary-blue) !important;
+  background-color: var(--primary-purple) !important;
   color: var(--primary-white) !important;
   padding: 1rem;
 }
@@ -148,12 +142,11 @@ body {
   padding-top: 2rem;
 }
 
-
 .card {
   margin: 0.8rem;
   background-color: var(--secondary-blue);
   color: var(--primary-white);
-  box-shadow: 0.10rem 0.10rem 0.10rem 0.10rem var(--secondary-grey);
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem var(--secondary-grey);
 }
 
 .add-button {
@@ -171,14 +164,13 @@ body {
 }
 
 .card a:hover {
-padding: 0.6rem;
+  padding: 0.6rem;
 }
 
 /*  --------------------- Journal Entree Section ------------------- */
 .journal-con {
   position: relative;
 }
-
 
 .entry-form {
   border: 0.1rem solid var(--primary-black);
@@ -214,7 +206,7 @@ padding: 0.6rem;
 .form input:focus + .label-title .content-title,
 .form input:valid + .label-title .content-title {
   display: none;
-} 
+}
 
 .form-entry {
   color: var(--primary-grey);
@@ -261,10 +253,8 @@ padding: 0.6rem;
   top: 92%;
 }
 
-
 /* entries */
 
 .entries {
-  border: 0.2rem solid var(--secondary-grey)
-  
+  border: 0.2rem solid var(--secondary-grey);
 }

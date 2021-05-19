@@ -11,13 +11,8 @@ body {
 :root {
   --primary-white: #fff;
   --primary-black: rgb(72, 77, 92);
-  --primary-pink: rgb(213, 185, 177);
-  --primary-yellow: rgb(240, 177, 64);
-  --primary-blue: rgb(69, 115, 115);
-  --primary-green: rgb(115, 144, 134);
-  --primary-purple: rgb(188, 148, 210);
-  --secondary-blue: rgb(164, 189, 190);
-  --primary-grey: rgb(216, 216, 214);
+  --secondary-purple: rgb(200, 185, 255);
+  --primary-purple: rgb(85, 81, 255);
 }
 
 /* ******************* Nav ***************** */
@@ -39,7 +34,7 @@ body {
   font-family: "Archivo", sans-serif;
   font-weight: 500 !important;
   font-size: 1rem;
-  background-color: var(--secondary-blue) !important;
+  background-color: var(--primary-purple) !important;
   color: var(--primary-white) !important;
   padding: 1rem;
 }
@@ -71,20 +66,22 @@ body {
 .header-wraper h1 {
   font-family: "Archivo", sans-serif;
   font-weight: 500;
+
 }
+
 
 .header-img {
   width: 24rem;
-  border: 2rem solid var(--primary-pink);
+  border: 2rem solid var(--secondary-purple);
 }
 
 .header-wraper button {
-  border: 0.1rem solid var(--primary-blue);
+  border: 0.1rem solid var(--secondary-purple);
   margin: 0.5rem;
 }
 
 .btn2 {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-purple);
 }
 .btn2 a {
   color: var(--primary-white) !important;
@@ -92,15 +89,15 @@ body {
 
 .btn2:hover {
   background-color: var(--primary-white);
-  color: var(--primary-blue) !important;
+  color: var(--primary-purple) !important;
 }
 
 .btn2 a:hover {
-  color: var(--primary-blue) !important;
+  color: var(--primary-black) !important;
 }
 
 .btn1:hover {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-purple);
   color: var(--primary-white);
 }
 
@@ -136,7 +133,11 @@ body {
 .card-wraper {
   text-align: center;
   margin: 2rem;
-  max-width: 10rem;
+  max-width: 14rem;
+}
+
+.card-wraper p {
+  font-size: 1.2rem;
 }
 
 .reasons-container {
@@ -144,8 +145,13 @@ body {
   justify-content: center;
 }
 
+
+
 .reason-img {
-  width: 8rem;
+  max-height: 8rem;
+  min-height: 8rem;
+  max-width: 12rem;
+  min-width: 12rem;
   border-radius: 50%;
   margin-bottom: 1rem;
 }
