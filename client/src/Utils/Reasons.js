@@ -1,21 +1,20 @@
 import logo from '../loginImages/nature.jpg';
+import process from '../loginImages/process.jpg';
+import privacy from '../loginImages/privacy.jpg';
+import therapy from '../loginImages/therapy.jpg';
 
 const Reasons = [
 {
     reason: "Helps your process",
-    img: logo
+    img: process
 },
 {
     reason: "Privacy is key",
-    img: logo
+    img: privacy
 },
 {
     reason: "Proven to act as a form of therapy",
-    img: logo
-},
-{
-    reason: "Privacy is key",
-    img: logo
+    img: therapy
 }
 ]
 
