@@ -113,19 +113,14 @@ const Profile = ({ handleLogout }) => {
   };
 
   const handleSaveClick = () => {
+    console.log(entry.title);
+    console.log(entry.body);
     const email = user.email;
     const currentValue = currentJournal.title;
     API.getUser(email).then((res) => {
       API.getCatagory(currentValue, res.data.id).then((res) => {
         API.getAllEntries(res.data.id).then((res) => {
-          console.log(res);
-          console.log(res.data);
-          console.log(entry.title);
-
-          console.log(res.data.length);
-
           if (res.data.length === 0) {
-            console.log("this works");
             API.createEntry({
               title: entry.title,
               text: entry.body,
@@ -133,27 +128,20 @@ const Profile = ({ handleLogout }) => {
             }).then((res) => {
               console.log(res);
               console.log(entryList);
-              // setRefresh(true);
             });
             getCatagoryInfo(user.email, currentJournal.title);
           } else {
-            let journals = [];
-
             for (let i = 0; i < res.data.length; i++) {
-              journals.push(res.data[i].title);
               if (res.data[i].title == entry.title) {
                 //we update
-                console.log("make an update call");
                 let entryId = res.data[i].id;
                 API.updateEntry(entryId, entry.title, entry.body).then(
                   (res) => {
                     console.log(res);
                   }
                 );
-
                 return;
               } else {
-                console.log("this works");
                 API.createEntry({
                   title: entry.title,
                   text: entry.body,
